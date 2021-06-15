@@ -7,8 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>会員管理</h1>
-<a href="/newMember.jsp">新規会員登録</a><br>
-<a href="#">検索（更新・削除）</a><br>
+<h1>退会完了しました</h1>
 </body>
 </html>

@@ -7,8 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>会員管理</h1>
-<a href="/newMember.jsp">新規会員登録</a><br>
-<a href="#">検索（更新・削除）</a><br>
+  <h1>資料のISBN番号を入力してください</h1>
+<form action="#" method="post">
+  ISBN番号： <input type="text" name="ISBN"><br>
+  <input type="submit" value="登録">
+</form>
 </body>
 </html>
