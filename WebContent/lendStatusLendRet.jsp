@@ -45,7 +45,7 @@ img{
   </table>
 <hr>
 <form action="#" method="post">
-  貸出資料ID：<input type="text" name="lendDocument"><br>
+  貸出資料ID：<input type="text" name="lendDocumentID"><br>
   <input type="submit" value="貸出確認画面へ">
 </form>
 <form action="#" method="post">
