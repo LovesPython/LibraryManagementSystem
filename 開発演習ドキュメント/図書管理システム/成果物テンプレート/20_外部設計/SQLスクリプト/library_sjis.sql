@@ -26,7 +26,7 @@ CREATE TABLE member (
 -- テーブルの所有者設定
 ALTER TABLE member OWNER TO libraryuser;
 
--- ユーザ台帳テーブルのサンプルデータ
+-- ユーザ台帳テーブルのデータ
 INSERT INTO member(member_name, member_address, member_tel, member_email, member_password, member_birthday, joined_at, canceled_at, is_staff) VALUES('木田浩志', '愛媛県宇和島市桜町4-11', '0893508232', 'kouji798@gyayvcqea.dml', DEFAULT, '1983-07-13', '2010-01-01', null, '1');
 INSERT INTO member(member_name, member_address, member_tel, member_email, member_password, member_birthday, joined_at, canceled_at, is_staff) VALUES('笠井成美', '大阪府枚方市印田町3-20', '0616085193', 'Narumi_Kasai@zana.zazaf.nd', DEFAULT, '1964-01-21', DEFAULT, null, '0');
 INSERT INTO member(member_name, member_address, member_tel, member_email, member_password, member_birthday, joined_at, canceled_at, is_staff) VALUES('川端由紀江', '長崎県佐世保市宇久町木場2-9-12', '0953395747', 'yukie1281@zdiczyosqw.rw', DEFAULT, '1992-01-31', DEFAULT, null, '0');
@@ -49,7 +49,7 @@ CREATE TABLE document_catalog (
 -- テーブルの所有者設定
 ALTER TABLE document_catalog OWNER TO libraryuser;
 
--- 資料目録テーブルのサンプルデータ
+-- 資料目録テーブルのデータ
 INSERT INTO document_catalog VALUES('4906638015', '7つの習慣', 3, 'スティーブン・R・コビー', 'キングベアー出版', '1996-12-25');
 INSERT INTO document_catalog VALUES('4480425993', 'よいこの君主論', 1, '架神恭介/辰巳一世', '筑摩書房', '2009-05-11');
 
@@ -59,7 +59,7 @@ INSERT INTO document_catalog VALUES('4480425993', 'よいこの君主論', 1, '架神恭介
 -- 3. document_ledger
 -- 資料台帳テーブルの作成
 CREATE TABLE document_ledger (
-    document_id INTEGER PRIMARY KEY,
+    document_id SERIAL PRIMARY KEY,
     isbn_no VARCHAR(15) NOT NULL,
     added_at DATE DEFAULT CURRENT_DATE NOT NULL,
     discarded_at DATE,
@@ -70,12 +70,12 @@ CREATE TABLE document_ledger (
 ALTER TABLE document_ledger OWNER TO libraryuser;
 
 -- 資料台帳テーブルのサンプルデータ
-INSERT INTO document_ledger VALUES(1, '1234567890', '1995-4-8', '2003-8-5', '劣化のため廃棄');
-INSERT INTO document_ledger VALUES(123, '4906638015', '2010-1-7', NULL, NULL);
-INSERT INTO document_ledger VALUES(124, '4906638015', '2010-1-7', NULL, NULL);
-INSERT INTO document_ledger VALUES(234, '4480425993', '2015-10-18', NULL, NULL);
-INSERT INTO document_ledger VALUES(235, '4480425993', '2015-10-18', NULL, NULL);
-INSERT INTO document_ledger VALUES(236, '4480425993', '2015-10-18', NULL, NULL);
+INSERT INTO document_ledger(isbn_no, added_at, discarded_at, note) VALUES('1234567890', '1995-4-8', '2003-8-5', '劣化のため廃棄');
+INSERT INTO document_ledger(isbn_no, added_at, discarded_at, note) VALUES('4906638015', '2010-1-7', NULL, NULL);
+INSERT INTO document_ledger(isbn_no, added_at, discarded_at, note) VALUES('4906638015', '2010-1-7', NULL, NULL);
+INSERT INTO document_ledger(isbn_no, added_at, discarded_at, note) VALUES('4480425993', '2015-10-18', NULL, NULL);
+INSERT INTO document_ledger(isbn_no, added_at, discarded_at, note) VALUES('4480425993', '2015-10-18', NULL, NULL);
+INSERT INTO document_ledger(isbn_no, added_at, discarded_at, note) VALUES('4480425993', '2015-10-18', NULL, NULL);
 
 -----------------------------------------------------------
 -----------------------------------------------------------
