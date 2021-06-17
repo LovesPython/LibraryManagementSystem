@@ -20,8 +20,7 @@ img{
     <a href="main.html"><img src="logo.png" alt="ヘッダ背景"></a>
   </header>
 <h1>貸出・返却</h1>
-<a href="#">貸出</a>
-<a href="#">返却</a>
+<a href="#">貸出・返却</a>
 <a href="#">延滞者一覧</a>
 </body>
 </html>

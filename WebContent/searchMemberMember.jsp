@@ -22,10 +22,10 @@ img{
 <h1>会員検索</h1>
 <form  action="#" method="post">
   <select  name="">
-    <option value="ID">会員ID</option>
+    <option value="memberId">会員ID</option>
     <option value="email">メールアドレス</option>
   </select>
-  <input type="text" name="memberID"><br><br>
+  <input type="text" name="submitText"><br><br>
     <div>
       <br>
     </div>
