@@ -30,10 +30,10 @@ CREATE TABLE member (
 ALTER TABLE member OWNER TO libraryuser;
 
 -- ƒ†[ƒU‘ä’ ƒe[ƒuƒ‹‚Ìƒf[ƒ^
-INSERT INTO member(member_name, member_address, member_tel, member_email, member_password, member_birthday, joined_at, canceled_at, is_staff, created_at, updated_at) VALUES('–Ø“c_u', 'ˆ¤•QŒ§‰F˜a“‡s÷’¬4-11', '0893508232', 'kouji798@gyayvcqea.dml', DEFAULT, '1983-07-13', '2010-01-01', null, '1', DEFAULT, DEFAULT);
-INSERT INTO member(member_name, member_address, member_tel, member_email, member_password, member_birthday, joined_at, canceled_at, is_staff, created_at, updated_at) VALUES('Š}ˆä¬”ü', '‘åã•{–‡•ûsˆó“c’¬3-20', '0616085193', 'Narumi_Kasai@zana.zazaf.nd', DEFAULT, '1964-01-21', DEFAULT, null, '0', DEFAULT, DEFAULT);
-INSERT INTO member(member_name, member_address, member_tel, member_email, member_password, member_birthday, joined_at, canceled_at, is_staff, created_at, updated_at) VALUES('ì’[—R‹I]', '’·èŒ§²¢•Ûs‰F‹v’¬–Øê2-9-12', '0953395747', 'yukie1281@zdiczyosqw.rw', DEFAULT, '1992-01-31', DEFAULT, null, '0', DEFAULT, DEFAULT);
-INSERT INTO member(member_name, member_address, member_tel, member_email, member_password, member_birthday, joined_at, canceled_at, is_staff, created_at, updated_at) VALUES('“ì•”Ls', 'ŒQ”nŒ§—WŠyŒS”Â‘q’¬’©“ú–ì3-9', '0279154153', 'hiroyuki5474@rcuwbue.tatz.xmn', DEFAULT, '1988-12-15', DEFAULT, null, '0', DEFAULT, DEFAULT);
+INSERT INTO member(member_name, member_address, member_tel, member_email, member_password, member_birthday, joined_at, canceled_at, is_staff, created_at, updated_at, deleted_at) VALUES('–Ø“c_u', 'ˆ¤•QŒ§‰F˜a“‡s÷’¬4-11', '0893508232', 'kouji798@gyayvcqea.dml', DEFAULT, '1983-07-13', '2010-01-01', null, '1', DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO member(member_name, member_address, member_tel, member_email, member_password, member_birthday, joined_at, canceled_at, is_staff, created_at, updated_at, deleted_at) VALUES('Š}ˆä¬”ü', '‘åã•{–‡•ûsˆó“c’¬3-20', '0616085193', 'Narumi_Kasai@zana.zazaf.nd', DEFAULT, '1964-01-21', DEFAULT, null, '0', DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO member(member_name, member_address, member_tel, member_email, member_password, member_birthday, joined_at, canceled_at, is_staff, created_at, updated_at, deleted_at) VALUES('ì’[—R‹I]', '’·èŒ§²¢•Ûs‰F‹v’¬–Øê2-9-12', '0953395747', 'yukie1281@zdiczyosqw.rw', DEFAULT, '1992-01-31', DEFAULT, null, '0', DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO member(member_name, member_address, member_tel, member_email, member_password, member_birthday, joined_at, canceled_at, is_staff, created_at, updated_at, deleted_at) VALUES('“ì•”Ls', 'ŒQ”nŒ§—WŠyŒS”Â‘q’¬’©“ú–ì3-9', '0279154153', 'hiroyuki5474@rcuwbue.tatz.xmn', DEFAULT, '1988-12-15', DEFAULT, null, '0', DEFAULT, DEFAULT, DEFAULT);
 
 -----------------------------------------------------------
 -----------------------------------------------------------
@@ -79,12 +79,12 @@ CREATE TABLE document_ledger (
 ALTER TABLE document_ledger OWNER TO libraryuser;
 
 -- ‘—¿‘ä’ ƒe[ƒuƒ‹‚ÌƒTƒ“ƒvƒ‹ƒf[ƒ^
-INSERT INTO document_ledger(isbn_no, added_at, discarded_at, note, created_at, updated_at) VALUES('1234567890', '1995-4-8', '2003-8-5', '—ò‰»‚Ì‚½‚ß”pŠü', DEFAULT, DEFAULT);
-INSERT INTO document_ledger(isbn_no, added_at, discarded_at, note, created_at, updated_at) VALUES('4906638015', '2010-1-7', NULL, NULL, DEFAULT, DEFAULT);
-INSERT INTO document_ledger(isbn_no, added_at, discarded_at, note, created_at, updated_at) VALUES('4906638015', '2010-1-7', NULL, NULL, DEFAULT, DEFAULT);
-INSERT INTO document_ledger(isbn_no, added_at, discarded_at, note, created_at, updated_at) VALUES('4480425993', '2015-10-18', NULL, NULL, DEFAULT, DEFAULT);
-INSERT INTO document_ledger(isbn_no, added_at, discarded_at, note, created_at, updated_at) VALUES('4480425993', '2015-10-18', NULL, NULL, DEFAULT, DEFAULT);
-INSERT INTO document_ledger(isbn_no, added_at, discarded_at, note, created_at, updated_at) VALUES('4480425993', '2015-10-18', NULL, NULL, DEFAULT, DEFAULT);
+INSERT INTO document_ledger(isbn_no, added_at, discarded_at, note, created_at, updated_at, deleted_at) VALUES('1234567890', '1995-4-8', '2003-8-5', '—ò‰»‚Ì‚½‚ß”pŠü', DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO document_ledger(isbn_no, added_at, discarded_at, note, created_at, updated_at, deleted_at) VALUES('4906638015', '2010-1-7', NULL, NULL, DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO document_ledger(isbn_no, added_at, discarded_at, note, created_at, updated_at, deleted_at) VALUES('4906638015', '2010-1-7', NULL, NULL, DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO document_ledger(isbn_no, added_at, discarded_at, note, created_at, updated_at, deleted_at) VALUES('4480425993', '2015-10-18', NULL, NULL, DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO document_ledger(isbn_no, added_at, discarded_at, note, created_at, updated_at, deleted_at) VALUES('4480425993', '2015-10-18', NULL, NULL, DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO document_ledger(isbn_no, added_at, discarded_at, note, created_at, updated_at, deleted_at) VALUES('4480425993', '2015-10-18', NULL, NULL, DEFAULT, DEFAULT, DEFAULT);
 
 -----------------------------------------------------------
 -----------------------------------------------------------
