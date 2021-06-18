@@ -19,6 +19,7 @@ img{
   <header>
     <a href="main.html"><img src="logo.png" alt="ヘッダ背景"></a>
   </header>
+  <h1>会員情報を更新</h1>
   <table border="1">
     <tr>
       <td>ID</td><td>名前</td><td>住所</td><td>電話番号</td><td>メールアドレス</td><td>生年月日</td>
