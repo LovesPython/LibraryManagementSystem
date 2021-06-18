@@ -17,7 +17,7 @@ img{
 </style>
 <body>
   <header>
-    <a href="main.html"><img src="logo.png" alt="ヘッダ背景"></a>
+    <a href="main.html"><img src="./../logo.png" alt="ヘッダ背景"></a>
   </header>
 <h1>延滞者一覧</h1>
 <table border="1">
