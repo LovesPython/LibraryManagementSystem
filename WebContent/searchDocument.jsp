@@ -21,7 +21,11 @@ img{
   </header>
 <h1>資料のISBN番号を入力してください</h1>
 <form action="#" method="post">
-  ISBN番号： <input type="text" name="ISBN"><br>
+<select  name="">
+    <option value="memberId">ISBN番号： </option>
+    <option value="email">資料ID</option>
+  </select>
+  <input type="text" name="ISBN"><br>
   <input type="submit" value="検索">
 </form>
 <form action="#" method="post">
