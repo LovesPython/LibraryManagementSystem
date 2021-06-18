@@ -17,14 +17,14 @@ img{
 </style>
 <body>
   <header>
-    <a href="main.html"><img src="logo.png" alt="ヘッダ背景"></a>
+    <a href="./../menu.jsp"><img src="./../logo.png" alt="ヘッダ背景"></a>
   </header>
   <h1>資料のISBN番号を入力してください</h1>
-<form action="#" method="post">
+<form action="/LibraryManagementSystem/DocumentServlet?action=registerSearchByISBN" method="post">
   ISBN番号： <input type="text" name="ISBN"><br>
   <input type="submit" value="登録">
 </form>
-<form action="#" method="post">
+<form action="./../menu.jsp" method="post">
   <input type="submit" value="戻る">
 </form>
 </body>
