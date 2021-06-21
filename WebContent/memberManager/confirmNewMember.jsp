@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>新規会員登録内容確認</title>
 </head>
 <style media="screen">
 img{
@@ -17,7 +19,7 @@ img{
 </style>
 <body>
   <header>
-    <a href="main.html"><img src="logo.png" alt="ヘッダ背景"></a>
+    <a href="./../menu.jsp"><img src="./../logo.png" alt="ヘッダ背景"></a>
   </header>
 <h1>登録内容は以下でよろしいですか？</h1>
 <table border="1">
@@ -25,11 +27,13 @@ img{
     <td>名前</td><td>住所</td><td>電話番号</td><td>メールアドレス</td><td>生年月日</td>
   </tr>
   <tr>
-    <td>サンプルさん</td><td>サンプル住所</td><td>サンプル電話番号</td><td>サンプルメールアドレス</td><td>サンプル生年月日</td>
+    <td>${member.name}</td><td>${member.address}</td><td>${member.tel}</td><td>${member.email}</td><td>${member.birthday}</td>
   </tr>
 </table>
-<form action="#" method="post">
+<form action="/LibraryManagementSystem/MemberServlet?action=register" method="post">
   <input type="submit" value="OK"> <br>
+</form>
+<form action="registerNewMember.jsp" method="post">
   <input type="submit" value="戻る">
 </form>
 </body>
