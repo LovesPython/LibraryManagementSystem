@@ -19,7 +19,7 @@ img{
 </style>
 <body>
   <header>
-    <a href="./../menu.jsp"><img src="./../logo.png" alt="ヘッダ背景"></a>
+  	<a href="/LibraryManagementSystem/menu.jsp"><img src="/LibraryManagementSystem/logo.png" alt="ヘッダ背景"></a>
   </header>
 <h1>登録内容は以下でよろしいですか？</h1>
 <table border="1">
@@ -33,7 +33,7 @@ img{
 <form action="/LibraryManagementSystem/MemberServlet?action=register" method="post">
   <input type="submit" value="OK"> <br>
 </form>
-<form action="registerNewMember.jsp" method="post">
+<form action="/LibraryManagementSystem/memberManager/registerNewMember.jsp" method="post">
   <input type="submit" value="戻る">
 </form>
 </body>
