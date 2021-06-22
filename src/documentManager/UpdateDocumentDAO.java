@@ -12,6 +12,7 @@ public class UpdateDocumentDAO {
     getConnection();
   }
 
+  /*引数のbeanをもとに目録のDBを更新する*/
   public void updateCatalog(DocumentCatalogBean bean) throws DAOException{
     if(con==null){
       getConnection();
@@ -62,6 +63,7 @@ public class UpdateDocumentDAO {
     }
   }
 
+  /*引数のbeanをもとに目録のDBを更新する*/
   public void updateLedger(DocumentLedgerBean bean) throws DAOException{
     if(con==null){
       getConnection();
@@ -94,6 +96,7 @@ public class UpdateDocumentDAO {
     }
   }
 
+  /*引数のtargetId(資料ID)をもとに、台帳の削除日時をアップデートする*/
   public void deleteLedger(String targetId) throws DAOException{
     if(con==null){
       getConnection();
