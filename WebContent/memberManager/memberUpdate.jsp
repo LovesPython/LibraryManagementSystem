@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>会員情報更新</title>
 </head>
 <style media="screen">
 img{
@@ -17,7 +18,7 @@ img{
 </style>
 <body>
   <header>
-    <a href="main.html"><img src="logo.png" alt="ヘッダ背景"></a>
+  	<a href="/LibraryManagementSystem/menu.jsp"><img src="/LibraryManagementSystem/logo.png" alt="ヘッダ背景"></a>
   </header>
   <h1>会員情報を更新</h1>
   <table border="1">
@@ -25,11 +26,11 @@ img{
       <td>ID</td><td>名前</td><td>住所</td><td>電話番号</td><td>メールアドレス</td><td>生年月日</td>
     </tr>
     <tr>
-      <td>サンプルID</td><td>サンプルさん</td><td>サンプル住所</td><td>サンプル電話番号</td><td>サンプルメールアドレス</td><td>サンプル生年月日</td>
+    <td>${member.memberId}</td><td>${member.name}</td><td>${member.address}</td><td>${member.tel}</td><td>${member.email}</td><td>${member.birthday}</td>
     </tr>
   </table>
   <hr>
-    <form  action="#" method="post">
+    <form  action="/LibraryManagementSystem/MemberServlet?action=confirmMemberUpdate" method="post">
       名前：<input type="text" name="name"><br>
       住所：<input type="text" name="address"><br>
       電話番号：<input type="text" name="tel"><br>
@@ -37,7 +38,7 @@ img{
       生年月日：<input type="text" name="birthday"><br>
       <input type="submit" value="確認画面へ">
     </form>
-    <form action="#" method="post">
+    <form action="./../menu.jsp" method="post">
       <input type="submit" value="戻る">
     </form>
 </body>
