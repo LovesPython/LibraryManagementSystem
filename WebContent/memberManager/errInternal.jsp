@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Input Error</title>
 </head>
 <body>
-<h1>${message }</h1>
+<h1>${message}</h1>
 </body>
 </html>
