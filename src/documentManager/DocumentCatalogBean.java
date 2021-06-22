@@ -1,5 +1,5 @@
 package documentManager;
-
+import java.io.Serializable;
 public class DocumentCatalogBean {
   private String isbnNo;
   private String name;

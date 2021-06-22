@@ -34,7 +34,7 @@ img{
       住所：<input type="text" name="address"><br>
       電話番号：<input type="text" name="tel"><br>
       メールアドレス：<input type="text" name="email"><br>
-      生年月日：<input type="text" name="birthday"><br>
+      生年月日：<input type="text" name="year">年<input type="text" name="month">月<input type="text" name="date">日<br>
       <input type="submit" value="確認画面へ">
     </form>
     <form action="#" method="post">

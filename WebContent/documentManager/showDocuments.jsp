@@ -29,10 +29,10 @@ img{
     <td>${doc.isbnNo}</td><td>${doc.name}</td><td>${doc.categoryCode}</td><td>${doc.author}</td><td>${doc.publisher}</td><td>${doc.publishDate}</td><td>${doc.documentId}</td>
   </tr>
 </table>
-<form action="#" method="post">
+<form action="/LibraryManagementSystem/DocumentServlet?action=confirmAlready" method="post">
 <input type="submit" value="確認画面へ">
 </form>
-<form action="#" method="post">
+<form action="/LibraryManagementSystem/documentManager/enterISBN.jsp" method="post">
   <input type="submit" value="戻る">
 </form>
 </body>

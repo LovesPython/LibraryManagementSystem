@@ -49,7 +49,104 @@ public class RegisterDocumentDAO {
           return bean;
         }else{//null
           System.out.println("SELECTでヒットしませんでした");
-          return null;
+          DocumentCatalogBean bean = new DocumentCatalogBean(null,"null",null,null,null,null,null);
+          return bean;
+        }
+
+    }catch(Exception e){
+      e.printStackTrace();
+      throw new DAOException("リソースの快方に失敗しました");
+    }finally{
+      try{
+        if(rs!=null) rs.close();
+        if(st!=null) st.close();
+        close();
+      }catch(Exception e){
+        throw new DAOException("リソースの快方に失敗しました");
+      }
+    }
+  }
+
+  public void registerDocumentCatalog(DocumentCatalogBean bean) throws DAOException{
+    if(con==null){
+      getConnection();
+    }
+
+    PreparedStatement st = null;
+    ResultSet rs = null;
+
+    try{
+        String sql = "INSERT INTO document_catalog VALUES(?, ?, ?, ?, ?, TO_DATE(?,'YY-MM-DD'), DEFAULT, DEFAULT, DEFAULT);";
+        st = con.prepareStatement(sql);
+        st.setString(1,bean.getIsbnNo());
+        st.setString(2,bean.getName());
+        st.setInt(3,Integer.valueOf(bean.getCategoryCode()));
+        st.setString(4,bean.getAuthor());
+        st.setString(5,bean.getPublisher());
+        st.setString(6,bean.getPublishDate());
+        st.executeUpdate();
+        st.close();
+    }catch(Exception e){
+      e.printStackTrace();
+      throw new DAOException("リソースの快方に失敗しました");
+    }finally{
+      try{
+        if(rs!=null) rs.close();
+        if(st!=null) st.close();
+        close();
+      }catch(Exception e){
+        throw new DAOException("リソースの快方に失敗しました");
+      }
+    }
+  }
+
+  public void registerDocumentLedger(DocumentCatalogBean bean) throws DAOException{
+    if(con==null){
+      getConnection();
+    }
+
+    PreparedStatement st = null;
+    ResultSet rs = null;
+
+    try{
+        String sql = "INSERT INTO document_ledger(isbn_no, added_at, discarded_at, note, created_at, updated_at, deleted_at) VALUES(?, DEFAULT, NULL, NULL, DEFAULT, DEFAULT, DEFAULT);";
+        st = con.prepareStatement(sql);
+        st.setString(1,bean.getIsbnNo());
+        st.executeUpdate();
+        st.close();
+    }catch(Exception e){
+      e.printStackTrace();
+      throw new DAOException("リソースの快方に失敗しました");
+    }finally{
+      try{
+        if(rs!=null) rs.close();
+        if(st!=null) st.close();
+        close();
+      }catch(Exception e){
+        throw new DAOException("リソースの快方に失敗しました");
+      }
+    }
+  }
+
+  public int getLatestDocumentId() throws DAOException{
+    if(con==null){
+      getConnection();
+    }
+
+    PreparedStatement st = null;
+    ResultSet rs = null;
+
+    try{
+        String sql = "SELECT document_id FROM document_ledger ORDER BY document_id DESC LIMIT 1";
+        st = con.prepareStatement(sql);
+        rs = st.executeQuery();
+        //SELECTで取った項目のnull判定。
+        if(rs.next()){//nullではない
+          int documentId = rs.getInt("document_id");
+          return documentId;
+        }else{//null
+          System.out.println("SELECTでヒットしませんでした");
+          return -1;
         }
 
     }catch(Exception e){
