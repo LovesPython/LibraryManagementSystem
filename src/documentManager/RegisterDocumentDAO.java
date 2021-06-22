@@ -12,7 +12,7 @@ public class RegisterDocumentDAO {
   public RegisterDocumentDAO() throws DAOException{
     getConnection();
   }
-
+  /*ISBN番号をもとにDBから目録を1行取得*/
   public DocumentCatalogBean findCatalogByISBN(String isbn) throws DAOException{
     if(con==null){
       getConnection();
@@ -52,7 +52,6 @@ public class RegisterDocumentDAO {
           DocumentCatalogBean bean = new DocumentCatalogBean(null,"null",null,null,null,null,null);
           return bean;
         }
-
     }catch(Exception e){
       e.printStackTrace();
       throw new DAOException("リソースの快方に失敗しました");
@@ -67,6 +66,7 @@ public class RegisterDocumentDAO {
     }
   }
 
+  /*目録を引数のbeanをもとにDBに登録*/
   public void registerDocumentCatalog(DocumentCatalogBean bean) throws DAOException{
     if(con==null){
       getConnection();
@@ -100,6 +100,7 @@ public class RegisterDocumentDAO {
     }
   }
 
+  /*目録の登録時もしくは目録が既登録のとき一緒に台帳DBに新規登録する*/
   public void registerDocumentLedger(DocumentCatalogBean bean) throws DAOException{
     if(con==null){
       getConnection();
@@ -127,7 +128,7 @@ public class RegisterDocumentDAO {
       }
     }
   }
-
+  /*台帳から最後のIdを取ってくる*/
   public int getLatestDocumentId() throws DAOException{
     if(con==null){
       getConnection();

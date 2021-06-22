@@ -15,6 +15,7 @@ public class SearchDocumentDAO {
     getConnection();
   }
 
+  /*ISBNをもとに台帳から該当する行を全て取得*/
   public List<DocumentLedgerBean> findLedgerByISBN(String isbn) throws DAOException{
     if(con==null){
       getConnection();
@@ -56,6 +57,7 @@ public class SearchDocumentDAO {
     }
   }
 
+  /*idをもとに、単一の台帳を取得*/
   public DocumentLedgerBean findLedgerById(String id) throws DAOException{
     if(con==null){
       getConnection();
@@ -97,6 +99,7 @@ public class SearchDocumentDAO {
     }
   }
 
+  /*ISBNをもとに、該当する資料名を取得*/
   public String getNameByISBN(String isbnNo) throws DAOException{
     if(con==null){
       getConnection();
