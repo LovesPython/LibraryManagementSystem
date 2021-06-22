@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>退会完了</title>
 </head>
 <style media="screen">
 img{
@@ -17,9 +17,9 @@ img{
 </style>
 <body>
   <header>
-    <a href="main.html"><img src="logo.png" alt="ヘッダ背景"></a>
+    <a href="/LibraryManagementSystem/menu.jsp"><img src="/LibraryManagementSystem/logo.png" alt="ヘッダ背景"></a>
   </header>
 <h1>退会完了しました</h1>
-<a href="#">会員検索画面に戻る</a>
+<a href="/LibraryManagementSystem/memberManager/searchMemberMember.jsp">会員検索画面に戻る</a>
 </body>
 </html>

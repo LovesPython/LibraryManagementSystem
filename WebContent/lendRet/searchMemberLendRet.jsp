@@ -17,17 +17,20 @@ img{
 </style>
 <body>
   <header>
-    <a href="main.html"><img src="logo.png" alt="ヘッダ背景"></a>
+    <a href="/LibraryManagementSystem/menu.jsp"><img src="/LibraryManagementSystem/logo.png" alt="ヘッダ背景"></a>
   </header>
   <h1>会員検索</h1>
-  会員ID：
-  <input type="text" name="memberID"><br><br>
-    <div>
-      <br>
-    </div>
-  <input type="submit" value="検索">
-    <form action="#" method="post">
-      <input type="submit" value="戻る">
-    </form>
+<form action="/LibraryManagementSystem/LendRetServlet?action=searchForLendRet" method="post">
+	会員ID：
+	<input type="text" name="memberID"><br><br>
+	  <div>
+	    <br>
+	  </div>
+
+  	<input type="submit" value="検索">
+ </form>
+<form action="/LibraryManagementSystem/LendRetServlet?action=top" method="post">
+  <input type="submit" value="戻る">
+</form>
 </body>
 </html>
