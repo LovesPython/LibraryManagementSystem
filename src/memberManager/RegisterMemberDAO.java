@@ -50,7 +50,7 @@ public class RegisterMemberDAO {
 			}
 		}
 	}
-	/* メールアドレスが既に存在するか判定用、どこで使うかわかりません */
+	/* メールアドレスが既に存在するか判定用、使い道未定 */
 	public Boolean isExistEmail(String email) throws DAOException{
 		if(con==null){
 			getConnection();
