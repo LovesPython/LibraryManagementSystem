@@ -65,33 +65,42 @@ public class DocumentServlet extends HttpServlet {
 				HttpSession session = request.getSession(false);
 				DocumentCatalogBean bean = (DocumentCatalogBean) session.getAttribute("isbn");
 				RegisterDocumentDAO dao = new RegisterDocumentDAO();
-				//入力された情報をbeanに格納
-				String isbn_no = bean.getIsbnNo();
-				String name = request.getParameter("name");
-				String categoryCode = request.getParameter("classifyCode");
-				String author = request.getParameter("author");
-				String publisher = request.getParameter("publisher");
-				int year = Integer.parseInt(request.getParameter("year"));
-				int month = Integer.parseInt(request.getParameter("month"));
-				int date = Integer.parseInt(request.getParameter("date"));
-				String publishedAt = year+"-"+month+"-"+date;
-				int documentId = dao.getLatestDocumentId();
+
 				//入力値チェック、おかしければエラーページ
-				if(name==null || 9 < Integer.parseInt(categoryCode) || Integer.parseInt(categoryCode) < 0 || author==null || publisher==null || year < 0 || month < 1 || 12 < month  || date < 1 || 31 < date){
+				try{
+					//入力された情報をbeanに格納
+					String isbn_no = bean.getIsbnNo();
+					String name = request.getParameter("name");
+					String categoryCode = request.getParameter("classifyCode");
+					String author = request.getParameter("author");
+					String publisher = request.getParameter("publisher");
+					int year = Integer.parseInt(request.getParameter("year"));
+					int month = Integer.parseInt(request.getParameter("month"));
+					int date = Integer.parseInt(request.getParameter("date"));
+					String publishedAt = year+"-"+month+"-"+date;
+					int categoryCodeInt = Integer.parseInt(categoryCode);
+					int documentId = dao.getLatestDocumentId();
+					if(name.length()==0 || 9 < categoryCodeInt || categoryCodeInt < 0 || author.length()==0 || publisher.length()==0 || year < 0 || month < 1 || 12 < month  || date < 1 || 31 < date){
 						System.out.println("不正な値");
 						request.setAttribute("message","入力値が不正です");
 						gotoPage(request,response,"/errInternal.jsp");
 						return;
-				}
-				//idが存在しなければ-1が帰ってくる
-				if(documentId == -1){
-					System.out.println("SQL文に異常あり");
+					}
+					//idが存在しなければ-1が帰ってくる
+					if(documentId == -1){
+						System.out.println("SQL文に異常あり");
+						return;
+					}
+					documentId = documentId + 1;
+					bean = new DocumentCatalogBean(isbn_no,name,categoryCode,author,publisher,publishedAt,String.valueOf(documentId));
+					session.setAttribute("doc",bean);
+					gotoPage(request,response,"/documentManager/confirmRegisterDocument.jsp");
+				}catch(Exception e){
+					System.out.println("不正な値");
+					request.setAttribute("message","入力値が不正です");
+					gotoPage(request,response,"/errInternal.jsp");
 					return;
 				}
-				documentId = documentId + 1;
-				bean = new DocumentCatalogBean(isbn_no,name,categoryCode,author,publisher,publishedAt,String.valueOf(documentId));
-				session.setAttribute("doc",bean);
-				gotoPage(request,response,"/documentManager/confirmRegisterDocument.jsp");
 
 
 			}else if(action.equals("register")){////////////////////////
@@ -121,7 +130,7 @@ public class DocumentServlet extends HttpServlet {
 				HttpSession session = request.getSession(true);
 				if(selector.equals("ISBN")){
 					//入力値チェック、おかしければエラーページ
-					if(input==null || input.length()!=10){
+					if(input.length()==0 || input.length()!=10){
 						System.out.println("おかしなISBN");
 						request.setAttribute("message","ISBN番号は10桁で正確に入力してください");
 						gotoPage(request,response,"/errInternal.jsp");
@@ -219,7 +228,12 @@ public class DocumentServlet extends HttpServlet {
 				bean = dao.findLedgerById(targetId);
 
 				String[] addDateList = bean.getAddDate().split("-");
-				String[] discardedDateList = bean.getDiscardedDate().split("-");
+				String[] discardedDateList = new String[3];
+				try{
+					discardedDateList = bean.getDiscardedDate().split("-");
+				}catch(Exception e){
+					System.out.println("未廃棄のもの");
+				}
 
 				session.setAttribute("addDateList",addDateList);
 				session.setAttribute("discardedDateList",discardedDateList);
@@ -303,22 +317,35 @@ public class DocumentServlet extends HttpServlet {
 					return;
 				}
 
-				//更新内容をJSPから取得
 				String isbnNo = request.getParameter("ISBN");
 				String name = request.getParameter("name");
 				String categoryCode = request.getParameter("classifyCode");
 				String author = request.getParameter("author");
 				String publisher = request.getParameter("publisher");
-				int year = Integer.parseInt(request.getParameter("year"));
-				int month = Integer.parseInt(request.getParameter("month"));
-				int date = Integer.parseInt(request.getParameter("date"));
+				int year,month,date,categoryCodeInt;
+				try{
+					year =
+					Integer.parseInt(request.getParameter("year"));
+					System.out.println("1");
+					month = Integer.parseInt(request.getParameter("month"));
+					System.out.println("2");
+					date = Integer.parseInt(request.getParameter("date"));
+					System.out.println("3");
+					categoryCodeInt = Integer.parseInt(request.getParameter("classifyCode"));
+				}catch(Exception e){
+					System.out.println("不正な値a");
+					request.setAttribute("message","入力値が不正です");
+					gotoPage(request,response,"/errInternal.jsp");
+					return;
+				}
+
 				String publishDate = year+"-"+month+"-"+date;
 				//入力内容をチェック、おかしければエラーページ
-				if(name==null || 9 < Integer.parseInt(categoryCode) || Integer.parseInt(categoryCode) < 0 || author==null || publisher==null || year < 0 || month < 1 || 12 < month  || date < 1 || 31 < date){
-						System.out.println("不正な値");
-						request.setAttribute("message","入力値が不正です");
-						gotoPage(request,response,"/errInternal.jsp");
-						return;
+				if(isbnNo.length()!=10 ||name.length()==0 || 9 < categoryCodeInt || categoryCodeInt < 0 || author.length()==0 || publisher.length()==0 || year < 0 || month < 1 || 12 < month  || date < 1 || 31 < date){
+					System.out.println("不正な値a");
+					request.setAttribute("message","入力値が不正です");
+					gotoPage(request,response,"/errInternal.jsp");
+					return;
 				}
 				//更新内容をセット
 				catalog.setIsbnNo(isbnNo);
@@ -354,23 +381,46 @@ public class DocumentServlet extends HttpServlet {
 					return;
 				}
 				//更新内容をJSPから取得
-				int addYear = Integer.parseInt(request.getParameter("addedYear"));
-				int addMonth = Integer.parseInt(request.getParameter("addedMonth"));
-				int addDate = Integer.parseInt(request.getParameter("addedDate"));
-				String addedAt = addYear+"-"+addMonth+"-"+addDate;
+				String discardedAt;
+				int addYear,addMonth,addDate,discardedYear,discardedMonth,discardedDate;
+				try{
+					addYear = Integer.parseInt(request.getParameter("addedYear"));
+					addMonth = Integer.parseInt(request.getParameter("addedMonth"));
+					addDate = Integer.parseInt(request.getParameter("addedDate"));
+				}catch(Exception e){
+					System.out.println("不正な値");
+					request.setAttribute("message","入力値が不正です");
+					gotoPage(request,response,"/errInternal.jsp");
+					return;
+				}
 
-				int discardedYear = Integer.parseInt(request.getParameter("discardedYear"));
-				int discardedMonth = Integer.parseInt(request.getParameter("discardedMonth"));
-				int discardedDate = Integer.parseInt(request.getParameter("discardedDate"));
-				String discardedAt = discardedYear+"-"+discardedMonth+"-"+discardedDate;
-
-				String note = request.getParameter("note");
-				//入力内容をチェック、おかしければエラーページ
-				if(addYear < 0 || addMonth < 1 || 12 < addMonth  || addDate < 1 || 31 < addDate || discardedYear < 0 || discardedMoonth < 1 || 12 < discardedMonth || discardedDate < 1 || 31 < discardedDate){
+				if(request.getParameter("discardedYear").length()==0 && request.getParameter("discardedMonth").length()==0 && request.getParameter("discardedDate").length()==0 ){
+					System.out.println("廃棄はnull");
+					discardedYear = 1;
+					discardedMonth = 1;
+					discardedDate = 1;
+					discardedAt = null;
+				}else{
+					try{
+						discardedYear = Integer.parseInt(request.getParameter("discardedYear"));
+						discardedMonth = Integer.parseInt(request.getParameter("discardedMonth"));
+						discardedDate = Integer.parseInt(request.getParameter("discardedDate"));
+						discardedAt = discardedYear+"-"+discardedMonth+"-"+discardedDate;
+					}catch(Exception e){
 						System.out.println("不正な値");
 						request.setAttribute("message","入力値が不正です");
 						gotoPage(request,response,"/errInternal.jsp");
 						return;
+					}
+				}
+				String addedAt = addYear+"-"+addMonth+"-"+addDate;
+				String note = request.getParameter("note");
+				//入力内容をチェック、おかしければエラーページ
+				if(addYear < 0 || addMonth < 1 || 12 < addMonth  || addDate < 1 || 31 < addDate || discardedYear < 0 || discardedMonth < 1 || 12 < discardedMonth || discardedDate < 1 || 31 < discardedDate){
+					System.out.println("不正な値");
+					request.setAttribute("message","入力値が不正です");
+					gotoPage(request,response,"/errInternal.jsp");
+					return;
 				}
 				//更新内容をセット
 				ledgerOne.setAddDate(addedAt);
@@ -406,24 +456,50 @@ public class DocumentServlet extends HttpServlet {
 					gotoPage(request,response,"/errInternal.jsp");
 					return;
 				}
+
 				//更新内容をJSPから取得
-				int addYear = Integer.parseInt(request.getParameter("addedYear"));
-				int addMonth = Integer.parseInt(request.getParameter("addedMonth"));
-				int addDate = Integer.parseInt(request.getParameter("addedDate"));
-				String addedAt = addYear+"-"+addMonth+"-"+addDate;
+				String discardedAt;
+				int addYear,addMonth,addDate,discardedYear,discardedMonth,discardedDate;
 
-				int discardedYear = Integer.parseInt(request.getParameter("discardedYear"));
-				int discardedMonth = Integer.parseInt(request.getParameter("discardedMonth"));
-				int discardedDate = Integer.parseInt(request.getParameter("discardedDate"));
-				String discardedAt = discardedYear+"-"+discardedMonth+"-"+discardedDate;
+				try{
+					addYear = Integer.parseInt(request.getParameter("addedYear"));
+					addMonth = Integer.parseInt(request.getParameter("addedMonth"));
+					addDate = Integer.parseInt(request.getParameter("addedDate"));
+				}catch(Exception e){
+					System.out.println("不正な値");
+					request.setAttribute("message","入力値が不正です");
+					gotoPage(request,response,"/errInternal.jsp");
+					return;
+				}
 
-				String note = request.getParameter("note");
-				//入力内容をチェック、おかしければエラーページ
-				if(addYear < 0 || addMonth < 1 || 12 < addMonth  || addDate < 1 || 31 < addDate || discardedYear < 0 || discardedMoonth < 1 || 12 < discardedMonth || discardedDate < 1 || 31 < discardedDate){
+				if(request.getParameter("discardedYear").length()==0 && request.getParameter("discardedMonth").length()==0 && request.getParameter("discardedDate").length()==0 ){
+					System.out.println("廃棄はnull");
+					discardedYear = 1;
+					discardedMonth = 1;
+					discardedDate = 1;
+					discardedAt = null;
+				}else{
+					try{
+						discardedYear = Integer.parseInt(request.getParameter("discardedYear"));
+						discardedMonth = Integer.parseInt(request.getParameter("discardedMonth"));
+						discardedDate = Integer.parseInt(request.getParameter("discardedDate"));
+						discardedAt = discardedYear+"-"+discardedMonth+"-"+discardedDate;
+					}catch(Exception e){
 						System.out.println("不正な値");
 						request.setAttribute("message","入力値が不正です");
 						gotoPage(request,response,"/errInternal.jsp");
 						return;
+					}
+				}
+
+				String addedAt = addYear+"-"+addMonth+"-"+addDate;
+				String note = request.getParameter("note");
+				//入力内容をチェック、おかしければエラーページ
+				if(addYear < 0 || addMonth < 1 || 12 < addMonth  || addDate < 1 || 31 < addDate || discardedYear < 0 || discardedMonth < 1 || 12 < discardedMonth || discardedDate < 1 || 31 < discardedDate){
+					System.out.println("不正な値");
+					request.setAttribute("message","入力値が不正です");
+					gotoPage(request,response,"/errInternal.jsp");
+					return;
 				}
 				//更新情報をセット
 				ledger.setAddDate(addedAt);
