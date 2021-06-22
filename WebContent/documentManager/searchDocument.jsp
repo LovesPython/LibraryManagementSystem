@@ -17,18 +17,18 @@ img{
 </style>
 <body>
   <header>
-    <a href="main.html"><img src="logo.png" alt="ヘッダ背景"></a>
+    <a href="/LibraryManagementSystem/menu.jsp"><img src="/LibraryManagementSystem/logo.png" alt="ヘッダ背景"></a>
   </header>
-<h1>資料のISBN番号を入力してください</h1>
-<form action="#" method="post">
-<select  name="">
-    <option value="memberId">ISBN番号： </option>
-    <option value="email">資料ID</option>
+<h1>資料のISBN番号または資料IDを入力してください</h1>
+<form action="/LibraryManagementSystem/DocumentServlet?action=searchDocuments" method="post">
+<select name="selector">
+    <option value="ISBN">ISBN番号： </option>
+    <option value="documentId">資料ID</option>
   </select>
-  <input type="text" name="ISBN"><br>
+  <input type="text" name="input"><br>
   <input type="submit" value="検索">
 </form>
-<form action="#" method="post">
+<form action="/LibraryManagementSystem/menu.jsp" method="post">
   <input type="submit" value="戻る">
 </form>
 </body>

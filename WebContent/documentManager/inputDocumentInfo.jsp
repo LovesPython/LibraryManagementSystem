@@ -17,18 +17,20 @@ img{
 </style>
 <body>
   <header>
-    <a href="main.html"><img src="logo.png" alt="ヘッダ背景"></a>
+    <a href="/LibraryManagementSystem/menu.jsp"><img src="/LibraryManagementSystem/logo.png" alt="ヘッダ背景"></a>
   </header>
   <h1>ISBN番号sample番号の資料を登録します</h1>
-  <form  action="#" method="post">
+  <form  action="/LibraryManagementSystem/DocumentServlet?action=confirmNew" method="post">
     資料名：<input type="text" name="name"><br>
     分類コード：<input type="text" name="classifyCode"><br>
     著者：<input type="text" name="author"><br>
     出版社：<input type="text" name="publisher"><br>
-    出版日：<input type="text" name="publishDate"><br>
+    出版日：<input type="text" name="year">年
+            <input type="text" name="month">月
+            <input type="text" name="date">日<br>
     <input type="submit" value="確認画面へ">
   </form>
-  <form action="#" method="post">
+  <form action="/LibraryManagementSystem/documentManager/enterISBN.jsp" method="post">
   <input type="submit" value="戻る">
 </form>
 </body>

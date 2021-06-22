@@ -19,13 +19,6 @@ img{
   <header>
     <a href="/LibraryManagementSystem/menu.jsp"><img src="/LibraryManagementSystem/logo.png" alt="ヘッダ背景"></a>
   </header>
-  <h1>資料のISBN番号を入力してください</h1>
-<form action="/LibraryManagementSystem/DocumentServlet?action=registerSearchByISBN" method="post">
-  ISBN番号： <input type="text" name="ISBN"><br>
-  <input type="submit" value="登録">
-</form>
-<form action="/LibraryManagementSystem/menu.jsp" method="post">
-  <input type="submit" value="戻る">
-</form>
+<h1>削除完了しました</h1>
 </body>
 </html>

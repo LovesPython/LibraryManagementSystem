@@ -17,9 +17,9 @@ img{
 </style>
 <body>
   <header>
-    <a href="main.html"><img src="logo.png" alt="ヘッダ背景"></a>
+    <a href="/LibraryManagementSystem/menu.jsp"><img src="/LibraryManagementSystem/logo.png" alt="ヘッダ背景"></a>
   </header>
 <h1>削除完了しました</h1>
-<a href="#">続けて資料を更新する</a>
+<a href="/LibraryManagementSystem/DocumentServlet?action=returnToshowDocuments">続けて資料を更新する</a>
 </body>
 </html>

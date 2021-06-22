@@ -22,6 +22,6 @@ img{
   <h1>
   資料の登録が完了しました
   </h1>
-  <a href="#">追加で資料を登録する</a>
+  <a href="/LibraryManagementSystem/documentManager/enterISBN.jsp">追加で資料を登録する</a>
 </body>
 </html>
