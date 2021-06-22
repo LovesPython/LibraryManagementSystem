@@ -17,7 +17,7 @@ img{
 </style>
 <body>
   <header>
-    <a href="main.html"><img src="logo.png" alt="ヘッダ背景"></a>
+    <a href="./../menu.jsp"><img src="./../logo.png" alt="ヘッダ背景"></a>
   </header>
 <h1>貸出・返却</h1>
 <a href="#">貸出・返却</a>
