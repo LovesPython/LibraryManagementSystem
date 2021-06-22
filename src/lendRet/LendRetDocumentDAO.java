@@ -22,24 +22,45 @@ public class LendRetDocumentDAO {
 		PreparedStatement st=null;
 		ResultSet rs=null;
 		try {
-
-			String sql="SELECT * FROM lending_ledger WHERE  returned_at IS NULL AND member_id=? ORDER BY return_deadline DESC";
-
+			String sql="SELECT * FROM member WHERE member_id=?";
 			st=con.prepareStatement(sql);
 			st.setInt(1,memberId);
 
 			rs=st.executeQuery();
 
-			List<LendingLedgerBean> list=new ArrayList<LendingLedgerBean>();
-			while(rs.next()) {
-				int lendingLedgerDocId=rs.getInt("document_id");
-		        String lendingLedgerLentAt=rs.getString("lent_at");
-		        String lendingLedgerReturnDeadline=rs.getString("return_deadline");
 
-		        LendingLedgerBean bean =new LendingLedgerBean(memberId,lendingLedgerDocId,lendingLedgerLentAt,lendingLedgerReturnDeadline);
-				list.add(bean);
+
+			if(rs.next()) {
+				st.close();
+				rs.close();
+
+				sql="SELECT * FROM lending_ledger WHERE  returned_at IS NULL AND member_id=? ORDER BY return_deadline DESC";
+
+				st=con.prepareStatement(sql);
+				st.setInt(1,memberId);
+
+				rs=st.executeQuery();
+
+				List<LendingLedgerBean> list=new ArrayList<LendingLedgerBean>();
+				while(rs.next()) {
+					int lendingLedgerDocId=rs.getInt("document_id");
+			        String lendingLedgerLentAt=rs.getString("lent_at");
+			        String lendingLedgerReturnDeadline=rs.getString("return_deadline");
+
+			        LendingLedgerBean bean =new LendingLedgerBean(memberId,lendingLedgerDocId,lendingLedgerLentAt,lendingLedgerReturnDeadline);
+					list.add(bean);
+				}
+				return list;
+			}else {
+				st.close();
+				rs.close();
+
+				List<LendingLedgerBean> list=new ArrayList<LendingLedgerBean>();
+				list=null;
+				return list;
 			}
-			return list;
+
+
 		}catch(Exception e) {
 			e.printStackTrace();
 			throw new DAOException("レコードの取得に失敗しました。");
@@ -89,50 +110,49 @@ public class LendRetDocumentDAO {
 	    rs.close();
 	    st.close();
 
-	    int publishedDate=Integer.parseInt(publishedAt.replace("-",""));
+	    sql="SELECT * FROM lending_ledger WHERE document_id=? AND returned_at IS NULL";
+	    st=con.prepareStatement(sql);
+	    st.setInt(1,documentId);
 
-	    Calendar cal = Calendar.getInstance();
-
-	    int month=cal.get(Calendar.MONTH)+1;
-	    cal.add(Calendar.MONTH,1);
-
-	    String todayStr=String.format("%04d%02d%02d",cal.get(Calendar.YEAR),month,cal.get(Calendar.DATE));
-	    int today=Integer.parseInt(todayStr);
-
+	    rs=st.executeQuery();
 	    LendingLedgerBean bean=new LendingLedgerBean();
-	    bean.setDocumentId(documentId);
-	    bean.setMemberId(memberId);
-	    bean.setLentDate(getCalString(cal));
+	    if(rs.next()) {//貸出中の資料
+	    	st.close();
+	    	bean=null;
+	    	System.out.println("既に貸出中の資料です。");
+	    }else {
+	    	st.close();
 
-	    String deadline;
+		    int publishedDate=Integer.parseInt(publishedAt.replace("-",""));
 
-	    /*新刊の時*/
-	    if(today-publishedDate<=300){
-	      cal.add(Calendar.DATE, 10);
-	      deadline=getCalString(cal);
-	      bean.setReturnDeadline(deadline);
+		    Calendar cal = Calendar.getInstance();
 
-	    /*新刊以外の時*/
-	    }else{
-	      cal.add(Calendar.DATE, 15);
-	      deadline=getCalString(cal);
-	      bean.setReturnDeadline(deadline);
+		    int month=cal.get(Calendar.MONTH)+1;
+		    cal.add(Calendar.MONTH,1);
 
+		    String todayStr=String.format("%04d%02d%02d",cal.get(Calendar.YEAR),month,cal.get(Calendar.DATE));
+		    int today=Integer.parseInt(todayStr);
+
+		    bean.setDocumentId(documentId);
+		    bean.setMemberId(memberId);
+		    bean.setLentDate(getCalString(cal));
+
+		    String deadline;
+
+		    /*新刊の時*/
+		    if(today-publishedDate<=300){
+		      cal.add(Calendar.DATE, 10);
+		      deadline=getCalString(cal);
+		      bean.setReturnDeadline(deadline);
+
+		    /*新刊以外の時*/
+		    }else{
+		      cal.add(Calendar.DATE, 15);
+		      deadline=getCalString(cal);
+		      bean.setReturnDeadline(deadline);
+
+		    }
 	    }
-
-	    /*
-	    sql="INSERT INTO lending_ledger(member_id,document_id,return_deadline) VALUES(?,?,TO_Date(?,'YYYY-MM-DD'))";
-
-		st=con.prepareStatement(sql);
-
-		st.setInt(1,memberId);
-		st.setInt(2,documentId);
-		st.setString(3,deadline);
-
-		st.executeUpdate();
-		st.close();
-		*/
-
 	    return bean;
 
 	}catch(Exception e) {
