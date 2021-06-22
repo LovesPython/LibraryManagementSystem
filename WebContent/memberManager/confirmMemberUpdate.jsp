@@ -18,21 +18,21 @@ img{
 </style>
 <body>
   <header>
-  	<a href="/LibraryManagementSystem/menu.jsp"><img src="/LibraryManagementSystem/logo.png" alt="ヘッダ背景"></a><a href="/LibraryManagementSystem/menu.jsp"><img src="/LibraryManagementSystem/logo.png" alt="ヘッダ背景"></a>
+  	<a href="/LibraryManagementSystem/menu.jsp"><img src="/LibraryManagementSystem/logo.png" alt="ヘッダ背景"></a>
   </header>
-  <h1>登録内容は以下でよろしいですか？</h1>
+  <h1>更新内容は以下でよろしいですか？</h1>
   <table border="1">
     <tr>
       <td>ID</td><td>名前</td><td>住所</td><td>電話番号</td><td>メールアドレス</td><td>生年月日</td>
     </tr>
     <tr>
-    <td>${member.memberId}</td><td>${member.name}</td><td>${member.address}</td><td>${member.tel}</td><td>${member.email}</td><td>${member.birthday}</td>
+    <td>${member.id}</td><td>${member.name}</td><td>${member.address}</td><td>${member.tel}</td><td>${member.email}</td><td>${member.birthday}</td>
     </tr>
   </table>
-  <form action="/LibraryManagementSystem/MemberServlet?action=register" method="post">
+  <form action="/LibraryManagementSystem/MemberServlet?action=registerUpdate" method="post">
     <input type="submit" value="OK">
   </form><br>
-  <form action="memberUpdate.jsp" method="post">
+  <form action="/LibraryManagementSystem/memberManager/memberUpdate.jsp" method="post">
     <input type="submit" value="戻る">
   </form>
 </body>

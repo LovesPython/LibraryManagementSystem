@@ -26,7 +26,7 @@ img{
       <td>ID</td><td>名前</td><td>住所</td><td>電話番号</td><td>メールアドレス</td><td>生年月日</td>
     </tr>
     <tr>
-    <td>${member.memberId}</td><td>${member.name}</td><td>${member.address}</td><td>${member.tel}</td><td>${member.email}</td><td>${member.birthday}</td>
+    <td>${member.id}</td><td>${member.name}</td><td>${member.address}</td><td>${member.tel}</td><td>${member.email}</td><td>${member.birthday}</td>
     </tr>
   </table>
 <hr>
@@ -34,7 +34,7 @@ img{
 <form action="/LibraryManagementSystem/MemberServlet?action=deleteMember" method="post">
   <input type="submit" value="退会">
 </form>
-<form action="searchMemberResult.jsp" method="post">
+<form action="#" method="post">
   <input type="submit" value="戻る">
 </form>
 </body>

@@ -22,7 +22,7 @@ img{
   </header>
 <h1>会員検索</h1>
 <form  action="/LibraryManagementSystem/MemberServlet?action=search" method="post">
-  <select  name="">
+  <select  name="type">
     <option value="memberId">会員ID</option>
     <option value="email">メールアドレス</option>
   </select>
@@ -32,7 +32,7 @@ img{
     </div>
   <input type="submit" value="検索">
 </form>
-  <form action="./../menu.jsp" method="post">
+  <form action="/LibraryManagementSystem/menu.jsp" method="post">
     <input type="submit" value="戻る">
   </form>
 </body>

@@ -26,19 +26,19 @@ img{
       <td>ID</td><td>名前</td><td>住所</td><td>電話番号</td><td>メールアドレス</td><td>生年月日</td>
     </tr>
     <tr>
-    <td>${member.memberId}</td><td>${member.name}</td><td>${member.address}</td><td>${member.tel}</td><td>${member.email}</td><td>${member.birthday}</td>
+    <td>${member.id}</td><td>${member.name}</td><td>${member.address}</td><td>${member.tel}</td><td>${member.email}</td><td>${member.birthday}</td>
     </tr>
   </table>
   <hr>
     <form  action="/LibraryManagementSystem/MemberServlet?action=confirmMemberUpdate" method="post">
-      名前：<input type="text" name="name"><br>
-      住所：<input type="text" name="address"><br>
-      電話番号：<input type="text" name="tel"><br>
-      メールアドレス：<input type="text" name="email"><br>
-      生年月日：<input type="text" name="birthday"><br>
+      名前：<input type="text" name="name" value=${member.name}><br>
+      住所：<input type="text" name="address" value=${member.address}><br>
+      電話番号：<input type="text" name="tel" value=${member.tel}><br>
+      メールアドレス：<input type="text" name="email" value=${member.email}><br>
+      生年月日：<input type="text" name="year" value=${birthday[0]}>年<input type="text" name="month" value=${birthday[1]}>月<input type="text" name="date" value=${birthday[2]}>日<br>
       <input type="submit" value="確認画面へ">
     </form>
-    <form action="./../menu.jsp" method="post">
+    <form action="/LibraryManagementSystem/memberManager/searchMemberResult.jsp" method="post">
       <input type="submit" value="戻る">
     </form>
 </body>
