@@ -62,7 +62,6 @@
                   </tr>
                 </c:forEach>
               </table>
-              <hr>
                 <form action="/LibraryManagementSystem/documentManager/searchDocument.jsp" method="post">
                   <input type="submit" value="戻る">
                   </form>
