@@ -75,7 +75,7 @@ public class LendRetDocumentDAO {
 		}
 	}
 
-  /*返却期日の設定*/
+  /*貸出状況の表示*/
   public LendingLedgerBean addDeadline(int documentId,int memberId) throws DAOException{
     if (con==null)
 		getConnection();
@@ -83,6 +83,9 @@ public class LendRetDocumentDAO {
   	ResultSet rs=null;
 
 	try {
+		LendingLedgerBean bean=new LendingLedgerBean();
+
+		/*資料IDからISBN番号取得*/
 		String sql="SELECT * FROM document_ledger WHERE document_id=?";
 
 	    st=con.prepareStatement(sql);
@@ -90,70 +93,79 @@ public class LendRetDocumentDAO {
 
 	    rs=st.executeQuery();
 
-	    String isbnNo="";
 	    if(rs.next()) {
-	    	isbnNo=rs.getString("isbn_no");
-	    }
-	    rs.close();
-	    st.close();
+	    	String isbnNo=rs.getString("isbn_no");
+	    	String discardedDate=rs.getString("discarded_at");
+	    	bean.setDiscardedDate(discardedDate);
 
-	    sql="SELECT * FROM document_catalog WHERE isbn_no=?";
-	    st=con.prepareStatement(sql);
-	    st.setString(1,isbnNo);
+	    	rs.close();
+		    st.close();
 
-	    rs=st.executeQuery();
+		    /*ISBN番号から出版日の抜き出し*/
+		    sql="SELECT * FROM document_catalog WHERE isbn_no=?";
+		    st=con.prepareStatement(sql);
+		    st.setString(1,isbnNo);
 
-	    String publishedAt="";
-	    if(rs.next()) {
-	    	publishedAt=rs.getString("published_at");
-	    }
-	    rs.close();
-	    st.close();
+		    rs=st.executeQuery();
 
-	    sql="SELECT * FROM lending_ledger WHERE document_id=? AND returned_at IS NULL";
-	    st=con.prepareStatement(sql);
-	    st.setInt(1,documentId);
-
-	    rs=st.executeQuery();
-	    LendingLedgerBean bean=new LendingLedgerBean();
-	    if(rs.next()) {//貸出中の資料
-	    	st.close();
-	    	bean=null;
-	    	System.out.println("既に貸出中の資料です。");
-	    }else {
-	    	st.close();
-
-		    int publishedDate=Integer.parseInt(publishedAt.replace("-",""));
-
-		    Calendar cal = Calendar.getInstance();
-
-		    int month=cal.get(Calendar.MONTH)+1;
-		    cal.add(Calendar.MONTH,1);
-
-		    String todayStr=String.format("%04d%02d%02d",cal.get(Calendar.YEAR),month,cal.get(Calendar.DATE));
-		    int today=Integer.parseInt(todayStr);
-
-		    bean.setDocumentId(documentId);
-		    bean.setMemberId(memberId);
-		    bean.setLentDate(getCalString(cal));
-
-		    String deadline;
-
-		    /*新刊の時*/
-		    if(today-publishedDate<=300){
-		      cal.add(Calendar.DATE, 10);
-		      deadline=getCalString(cal);
-		      bean.setReturnDeadline(deadline);
-
-		    /*新刊以外の時*/
-		    }else{
-		      cal.add(Calendar.DATE, 15);
-		      deadline=getCalString(cal);
-		      bean.setReturnDeadline(deadline);
-
+		    String publishedAt="";
+		    if(rs.next()) {
+		    	publishedAt=rs.getString("published_at");
 		    }
+		    rs.close();
+		    st.close();
+
+		    /*貸出中の資料を調べる*/
+		    sql="SELECT * FROM lending_ledger WHERE document_id=? AND returned_at IS NULL";
+		    st=con.prepareStatement(sql);
+		    st.setInt(1,documentId);
+
+		    rs=st.executeQuery();
+
+		    if(rs.next()) {//貸出中の資料
+		    	st.close();
+		    	bean.setReturnedDate("lendingDocument");
+		    }else {
+		    	st.close();
+
+		    	/*返却期日の設定*/
+			    int publishedDate=Integer.parseInt(publishedAt.replace("-",""));
+
+			    Calendar cal = Calendar.getInstance();
+
+			    int month=cal.get(Calendar.MONTH)+1;
+			    cal.add(Calendar.MONTH,1);
+
+			    String todayStr=String.format("%04d%02d%02d",cal.get(Calendar.YEAR),month,cal.get(Calendar.DATE));
+			    int today=Integer.parseInt(todayStr);
+
+			    bean.setDocumentId(documentId);
+			    bean.setMemberId(memberId);
+			    bean.setLentDate(getCalString(cal));
+
+			    String deadline;
+
+			    /*新刊の時*/
+			    if(today-publishedDate<=300){
+			      cal.add(Calendar.DATE, 10);
+			      deadline=getCalString(cal);
+			      bean.setReturnDeadline(deadline);
+
+			    /*新刊以外の時*/
+			    }else{
+			      cal.add(Calendar.DATE, 15);
+			      deadline=getCalString(cal);
+			      bean.setReturnDeadline(deadline);
+
+			    }
+		    }
+		    return bean;
+	    }else {
+	    	bean=null;
+	    	return bean;
 	    }
-	    return bean;
+
+
 
 	}catch(Exception e) {
 		e.printStackTrace();
@@ -200,8 +212,8 @@ public class LendRetDocumentDAO {
 		}
 	}
 
-  /*返却処理*/
-  public LendingLedgerBean deleteLendingLedger(int memberId,int documentId) throws DAOException{
+  /*返却確認*/
+  public LendingLedgerBean showLendingLedger(int memberId,int documentId) throws DAOException{
 	  if (con==null)
 			getConnection();
 	  PreparedStatement st=null;
@@ -227,20 +239,6 @@ public class LendRetDocumentDAO {
 		st.close();
 		rs.close();
 
-		/*今日の日付を取得する*/
-		Calendar cal = Calendar.getInstance();
-		cal.add(Calendar.MONTH, 1);
-
-		sql="UPDATE lending_ledger SET returned_at=TO_Date(?,'YYYY-MM-DD') WHERE  member_id=? AND document_id=?";
-
-		st=con.prepareStatement(sql);
-		st.setString(1, getCalString(cal));
-		st.setInt(2,memberId);
-		st.setInt(3, documentId);
-
-		st.executeUpdate();
-		st.close();
-
 		return bean;
 	}catch(Exception e) {
 		e.printStackTrace();
@@ -256,7 +254,37 @@ public class LendRetDocumentDAO {
 	}
   }
 
+  /*返却処理*/
+  public void deleteLendingLedger(LendingLedgerBean bean)throws DAOException{
+    if (con==null)
+			getConnection();
+	  PreparedStatement st=null;
+    try{
+      /*今日の日付を取得する*/
+  		Calendar cal = Calendar.getInstance();
+  		cal.add(Calendar.MONTH, 1);
 
+  		String sql="UPDATE lending_ledger SET returned_at=TO_Date(?,'YYYY-MM-DD') WHERE  member_id=? AND document_id=?";
+
+  		st=con.prepareStatement(sql);
+  		st.setString(1, getCalString(cal));
+  		st.setInt(2,bean.getMemberId());
+  		st.setInt(3, bean.getDocumentId());
+
+  		st.executeUpdate();
+  		st.close();
+    }catch(Exception e) {
+  		e.printStackTrace();
+  		throw new DAOException("レコードの取得に失敗しました。");
+  	}finally {
+  		try {
+  			if(st != null) st.close();
+    close();
+  		}catch(Exception e){
+  			throw new DAOException("リソースの開放に失敗しました。");
+  		}
+    }
+  }
   	/*カレンダーを年月日の文字列で取得*/
 	private String  getCalString(Calendar cal){
 
