@@ -41,9 +41,12 @@ public class DocumentServlet extends HttpServlet {
 				if(bean.getName().equals("null")){//新規資料登録
 					bean.setIsbnNo(isbn);
 					session.setAttribute("isbn",bean);
+					session.setAttribute("button","appear");
+					//gotoPage(request,response,"/documentManager/forwarder.jsp");
 					gotoPage(request,response,"/documentManager/inputDocumentInfo.jsp");
 				}else{//追加資料登録
 					session.setAttribute("doc",bean);
+					session.setAttribute("button","disappear");
 					gotoPage(request,response,"/documentManager/showDocuments.jsp");
 				}
 
