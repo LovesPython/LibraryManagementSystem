@@ -264,7 +264,7 @@ public class LendRetDocumentDAO {
   		Calendar cal = Calendar.getInstance();
   		cal.add(Calendar.MONTH, 1);
 
-  		String sql="UPDATE lending_ledger SET returned_at=TO_Date(?,'YYYY-MM-DD') WHERE  member_id=? AND document_id=?";
+  		String sql="UPDATE lending_ledger SET returned_at=TO_Date(?,'YYYY-MM-DD'),updated_at=DEFAULT WHERE  member_id=? AND document_id=?";
 
   		st=con.prepareStatement(sql);
   		st.setString(1, getCalString(cal));
