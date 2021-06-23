@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
   <title>Insert title here</title>
   <link rel="stylesheet" href="/LibraryManagementSystem/CSS/styleMenu.css">
+    <script src="/LibraryManagementSystem/script/script.js" defer></script>
   </head>
   <body>
     <header>
@@ -24,8 +26,12 @@
 <form action="/LibraryManagementSystem/DocumentServlet?action=register" method="post">
   <input type="submit" class="button" value="登録する">
 </form>
-<form action="/LibraryManagementSystem/documentManager/inputDocumentInfo.jsp" method="post">
-  <input type="submit" class="button" value="戻る">
-</form>
+<c:if test="${button=='appear'}">
+  <div id="returnButton">
+    <form action="/LibraryManagementSystem/documentManager/inputDocumentInfo.jsp" method="post">
+      <input type="submit" class="button" value="戻る">
+    </form>
+  </div>
+</c:if>
 </body>
 </html>
