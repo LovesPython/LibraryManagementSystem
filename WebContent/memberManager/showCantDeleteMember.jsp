@@ -21,6 +21,6 @@ img{
   	<a href="/LibraryManagementSystem/menu.jsp"><img src="/LibraryManagementSystem/logo.png" alt="ヘッダ背景"></a>
   </header>
 <h1>退会できません</h1>
-<a href="searchMemberMember.jsp">会員検索画面に戻る</a>
+<a href="/LibraryManagementSystem/memberManager/searchMemberMember.jsp">会員検索画面に戻る</a>
 </body>
 </html>

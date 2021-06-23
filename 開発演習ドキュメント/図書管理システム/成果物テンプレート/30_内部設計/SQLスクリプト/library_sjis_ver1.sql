@@ -18,20 +18,22 @@ CREATE TABLE member (
 	member_email VARCHAR(255) NOT NULL,
 	member_password VARCHAR(15) DEFAULT 'himitu' NOT NULL,
 	member_birthday DATE NOT NULL,
+	joined_at DATE DEFAULT CURRENT_DATE NOT NULL,
+	canceled_at DATE,
 	is_staff BOOLEAN DEFAULT '0' NOT NULL,
-    joined_at DATE DEFAULT CURRENT_DATE NOT NULL,
-	updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    canceled_at DATE DEFAULT NULL
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    deleted_at TIMESTAMP DEFAULT null
 );
 
 -- テーブルの所有者設定
 ALTER TABLE member OWNER TO libraryuser;
 
 -- ユーザ台帳テーブルのデータ
-INSERT INTO member(member_name, member_address, member_tel, member_email, member_password, member_birthday, is_staff, joined_at, updated_at, canceled_at) VALUES('木田浩志', '愛媛県宇和島市桜町4-11', '0893508232', 'kouji798@gyayvcqea.dml', DEFAULT, '1983-07-13', '1', DEFAULT, DEFAULT, DEFAULT);
-INSERT INTO member(member_name, member_address, member_tel, member_email, member_password, member_birthday, is_staff, joined_at, updated_at, canceled_at) VALUES('笠井成美', '大阪府枚方市印田町3-20', '0616085193', 'Narumi_Kasai@zana.zazaf.nd', DEFAULT, '1964-01-21', '0', DEFAULT, DEFAULT, DEFAULT);
-INSERT INTO member(member_name, member_address, member_tel, member_email, member_password, member_birthday, is_staff, joined_at, updated_at, canceled_at) VALUES('川端由紀江', '長崎県佐世保市宇久町木場2-9-12', '0953395747', 'yukie1281@zdiczyosqw.rw', DEFAULT, '1992-01-31', '0', DEFAULT, DEFAULT, DEFAULT);
-INSERT INTO member(member_name, member_address, member_tel, member_email, member_password, member_birthday, is_staff, joined_at, updated_at, canceled_at) VALUES('南部広行', '群馬県邑楽郡板倉町朝日野3-9', '0279154153', 'hiroyuki5474@rcuwbue.tatz.xmn', DEFAULT, '1988-12-15', '0', DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO member(member_name, member_address, member_tel, member_email, member_password, member_birthday, joined_at, canceled_at, is_staff, created_at, updated_at, deleted_at) VALUES('木田浩志', '愛媛県宇和島市桜町4-11', '0893508232', 'kouji798@gyayvcqea.dml', DEFAULT, '1983-07-13', '2010-01-01', null, '1', DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO member(member_name, member_address, member_tel, member_email, member_password, member_birthday, joined_at, canceled_at, is_staff, created_at, updated_at, deleted_at) VALUES('笠井成美', '大阪府枚方市印田町3-20', '0616085193', 'Narumi_Kasai@zana.zazaf.nd', DEFAULT, '1964-01-21', DEFAULT, null, '0', DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO member(member_name, member_address, member_tel, member_email, member_password, member_birthday, joined_at, canceled_at, is_staff, created_at, updated_at, deleted_at) VALUES('川端由紀江', '長崎県佐世保市宇久町木場2-9-12', '0953395747', 'yukie1281@zdiczyosqw.rw', DEFAULT, '1992-01-31', DEFAULT, null, '0', DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO member(member_name, member_address, member_tel, member_email, member_password, member_birthday, joined_at, canceled_at, is_staff, created_at, updated_at, deleted_at) VALUES('南部広行', '群馬県邑楽郡板倉町朝日野3-9', '0279154153', 'hiroyuki5474@rcuwbue.tatz.xmn', DEFAULT, '1988-12-15', DEFAULT, null, '0', DEFAULT, DEFAULT, DEFAULT);
 
 -----------------------------------------------------------
 -----------------------------------------------------------
@@ -47,7 +49,7 @@ CREATE TABLE document_catalog (
     published_at DATE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    deleted_at TIMESTAMP DEFAULT NULL
+    deleted_at TIMESTAMP DEFAULT null
 );
 
 -- テーブルの所有者設定
@@ -65,22 +67,24 @@ INSERT INTO document_catalog VALUES('4480425993', 'よいこの君主論', 1, '架神恭介
 CREATE TABLE document_ledger (
     document_id SERIAL PRIMARY KEY,
     isbn_no VARCHAR(15) NOT NULL,
-    note VARCHAR(255),
     added_at DATE DEFAULT CURRENT_DATE NOT NULL,
+    discarded_at DATE,
+    note VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    discarded_at DATE DEFAULT NULL
+    deleted_at TIMESTAMP DEFAULT null
 );
 
 -- テーブルの所有者設定
 ALTER TABLE document_ledger OWNER TO libraryuser;
 
 -- 資料台帳テーブルのサンプルデータ
-INSERT INTO document_ledger(isbn_no, note, added_at, updated_at, discarded_at) VALUES('1234567890', '劣化のため廃棄', '1995-4-8', DEFAULT, '2003-8-5');
-INSERT INTO document_ledger(isbn_no, note, added_at, updated_at, discarded_at) VALUES('4906638015', NULL, '2021-1-7', DEFAULT, DEFAULT);
-INSERT INTO document_ledger(isbn_no, note, added_at, updated_at, discarded_at) VALUES('4906638015', NULL, '2021-1-7', DEFAULT, DEFAULT);
-INSERT INTO document_ledger(isbn_no, note, added_at, updated_at, discarded_at) VALUES('4480425993', NULL, '2015-10-18', DEFAULT, DEFAULT);
-INSERT INTO document_ledger(isbn_no, note, added_at, updated_at, discarded_at) VALUES('4480425993', NULL, '2015-10-18', DEFAULT, DEFAULT);
-INSERT INTO document_ledger(isbn_no, note, added_at, updated_at, discarded_at) VALUES('4480425993', NULL, '2015-10-18', DEFAULT, DEFAULT);
+INSERT INTO document_ledger(isbn_no, added_at, discarded_at, note, created_at, updated_at, deleted_at) VALUES('1234567890', '1995-4-8', '2003-8-5', '劣化のため廃棄', DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO document_ledger(isbn_no, added_at, discarded_at, note, created_at, updated_at, deleted_at) VALUES('4906638015', '2010-1-7', NULL, NULL, DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO document_ledger(isbn_no, added_at, discarded_at, note, created_at, updated_at, deleted_at) VALUES('4906638015', '2010-1-7', NULL, NULL, DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO document_ledger(isbn_no, added_at, discarded_at, note, created_at, updated_at, deleted_at) VALUES('4480425993', '2015-10-18', NULL, NULL, DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO document_ledger(isbn_no, added_at, discarded_at, note, created_at, updated_at, deleted_at) VALUES('4480425993', '2015-10-18', NULL, NULL, DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO document_ledger(isbn_no, added_at, discarded_at, note, created_at, updated_at, deleted_at) VALUES('4480425993', '2015-10-18', NULL, NULL, DEFAULT, DEFAULT, DEFAULT);
 
 -----------------------------------------------------------
 -----------------------------------------------------------
@@ -90,26 +94,23 @@ INSERT INTO document_ledger(isbn_no, note, added_at, updated_at, discarded_at) V
 CREATE TABLE lending_ledger (
 	member_id SERIAL,
     document_id INTEGER,
-    return_deadline DATE NOT NULL,
-    note VARCHAR(255),
     lent_at DATE DEFAULT CURRENT_DATE NOT NULL,
+    return_deadline DATE NOT NULL,
+    returned_at DATE,
+    note VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    returned_at DATE DEFAULT NULL
+    deleted_at TIMESTAMP DEFAULT null
 );
 
 -- テーブルの所有者設定
 ALTER TABLE lending_ledger OWNER TO libraryuser;
 
 -- 貸出台帳テーブルのサンプルデータ
-----返却済
-INSERT INTO lending_ledger VALUES(2, '12345', '2021-06-30', NULL, '2021-06-15', DEFAULT, '2021-06-22');
-INSERT INTO lending_ledger VALUES(2, '67890', '2021-06-30', NULL, '2021-06-15', DEFAULT, '2021-06-22');
-INSERT INTO lending_ledger VALUES(2, '11223', '2021-06-30', NULL, '2021-06-15', DEFAULT, '2021-06-22');
-----貸出中
-INSERT INTO lending_ledger VALUES(3, '11445', '2021-07-20', NULL, '2021-07-05', DEFAULT, DEFAULT);
-INSERT INTO lending_ledger VALUES(4, '123', '2021-07-20', NULL, '2021-07-05', DEFAULT, DEFAULT);
-INSERT INTO lending_ledger VALUES(4, '45', '2021-07-20', NULL, '2021-07-05', DEFAULT, DEFAULT);
-INSERT INTO lending_ledger VALUES(5, '678', '2021-07-20', NULL, '2021-07-05', DEFAULT, DEFAULT);
+INSERT INTO lending_ledger VALUES(2, '12345', '2010-06-15', '2010-06-30', '2010-06-22', NULL, DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO lending_ledger VALUES(2, '65489', '2010-06-15', '2010-06-30', '2010-06-22', NULL, DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO lending_ledger VALUES(2, '30570', '2010-06-15', '2010-06-30', '2010-06-22', NULL, DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO lending_ledger VALUES(3, '36980', '2010-06-16', '2010-07-01', NULL, NULL, DEFAULT, DEFAULT, DEFAULT);
 
 -----------------------------------------------------------
 -----------------------------------------------------------
