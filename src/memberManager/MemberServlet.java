@@ -44,10 +44,10 @@ public class MemberServlet extends HttpServlet {
 				String birthday = year + "-" + month + "-" + date;
 
 				//電話番号と誕生日が数字かどうかチェック
-				Boolean isNumericTel = tel.matches("[+-]?\\d*(\\.\\d+)?");
-				Boolean isNumericYear = year.matches("[+-]?\\d*(\\.\\d+)?");
-				Boolean isNumericMonth = month.matches("[+-]?\\d*(\\.\\d+)?");
-				Boolean isNumericDate = date.matches("[+-]?\\d*(\\.\\d+)?");
+				Boolean isNumericTel = tel.matches("[+]?\\d+");
+				Boolean isNumericYear = year.matches("[+]?\\d+");
+				Boolean isNumericMonth = month.matches("[+]?\\d+");
+				Boolean isNumericDate = date.matches("[+]?\\d+");
 
 				//不正入力の監視（長すぎるif文）
 				if(name.length()==0 || address.length()==0 || tel.length()==0 || tel.length() >= 15 || !isNumericTel || email.length()==0 || year.length()==0 || !isNumericYear || month.length()==0 || !isNumericMonth || date.length()==0 || !isNumericDate) {
@@ -101,10 +101,10 @@ public class MemberServlet extends HttpServlet {
 				}else if(inputType.equals("memberId")) {
 					//セレクトボックスで会員IDを選択した場合
 
-					//会員IDが数字かどうかチェック
-					Boolean isNumericId = submitText.matches("[+-]?\\d*(\\.\\d+)?");
+					//会員IDが数字（正の整数）かどうかチェック
+					Boolean isValidId = submitText.matches("[+]?\\d+");
 
-					if(isNumericId){
+					if(isValidId){
 						//正しい会員IDの場合
 
 						int memberId = Integer.parseInt(submitText);
@@ -160,11 +160,11 @@ public class MemberServlet extends HttpServlet {
 				Boolean flag = dao.isDeletable(memberId);
 
 				if(flag) {
-					//退会不可
-					gotoPage(request,response,"/memberManager/showCantDeleteMember.jsp");
-				}else {
 					//退会可
 					gotoPage(request,response,"/memberManager/canDeleteMember.jsp");
+				}else {
+					//退会不可
+					gotoPage(request,response,"/memberManager/showCantDeleteMember.jsp");
 				}
 			}else if(action.equals("deleteMember")) {
 				//アクション：退会処理（SQL文実行するだけ）
@@ -191,7 +191,7 @@ public class MemberServlet extends HttpServlet {
 				for(String b : birthArray) {
 					birthList.add(b);
 				}
-				session.setAttribute("member", bean);
+//				session.setAttribute("member", bean);
 				session.setAttribute("birthday", birthList);
 				gotoPage(request, response, "/memberManager/memberUpdate.jsp");
 
@@ -200,41 +200,53 @@ public class MemberServlet extends HttpServlet {
 
 				HttpSession session = request.getSession(false);
 				MemberBean bean = (MemberBean) session.getAttribute("member");
+				MemberBean beanA = new MemberBean();
 
 				//パラメータの取得（空っぽでも）
 				String name = request.getParameter("name");
 				String address = request.getParameter("address");
 				String tel = request.getParameter("tel");
 				String email = request.getParameter("email");
-				String birthday = request.getParameter("year") + "-" + request.getParameter("month") + "-" + request.getParameter("date");
+
+				//yearとmonthとdateをいったん変数に入れる
+				String year = request.getParameter("year");
+				String month = request.getParameter("month");
+				String date = request.getParameter("date");
+
+				//生年月日を結合して1つの変数にする（DBのため）
+				String birthday = year + "-" + month + "-" + date;
+
+				//電話番号と誕生日が数字（正の整数）かどうかチェック
+				Boolean isNumericTel = tel.matches("[+]?\\d+");
+				Boolean isNumericYear = year.matches("[+]?\\d+");
+				Boolean isNumericMonth = month.matches("[+]?\\d+");
+				Boolean isNumericDate = date.matches("[+]?\\d+");
+
+				//不正入力の監視（長すぎるif文）
+				if(name.length()==0 || address.length()==0 || tel.length()==0 || tel.length() >= 15 || !isNumericTel || email.length()==0 || year.length()==0 || !isNumericYear || month.length()==0 || !isNumericMonth || date.length()==0 || !isNumericDate) {
+					request.setAttribute("message","正しく入力してください");
+					gotoPage(request,response,"/memberManager/errInternal.jsp");
+					return;
+				}
 
 				//idはそのまま
-				bean.getId();
+				beanA.setId(bean.getId());
 
-				//空文字チェック。空なら元の値をセットする
-				if(name.equals("")) bean.setName(bean.getName());
-				else bean.setName(name);
+				//bean1に値を渡す
+				beanA.setName(name);
+				beanA.setAddress(address);
+				beanA.setTel(tel);
+				beanA.setEmail(email);
+				beanA.setBirthday(birthday);
 
-				if(address.equals("")) bean.setAddress(bean.getAddress());
-				else bean.setAddress(address);
-
-				if(tel.equals("")) bean.setTel(bean.getTel());
-				else bean.setTel(tel);
-
-				if(email.equals("")) bean.setEmail(bean.getEmail());
-				else bean.setEmail(email);
-
-				if(birthday.equals("")) bean.setBirthday(bean.getBirthday());
-				else bean.setBirthday(birthday);
-
-				session.setAttribute("member", bean);
+				session.setAttribute("member1", beanA);
 				gotoPage(request, response, "/memberManager/confirmMemberUpdate.jsp");
 
 			}else if(action.equals("registerUpdate")) {
 				//アクション：会員情報更新（SQL文実行するだけ）
 
 				HttpSession session = request.getSession(false);
-				MemberBean bean = (MemberBean) session.getAttribute("member");
+				MemberBean bean = (MemberBean) session.getAttribute("member1");
 				UpdateMemberDAO dao = new UpdateMemberDAO();
 
 				dao.updateMember(bean);

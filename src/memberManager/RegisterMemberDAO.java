@@ -85,7 +85,7 @@ public class RegisterMemberDAO {
 			}
 		}
 	}
-	/* 会員情報の新規登録用 */
+	/* メソッド：会員情報の新規登録用 */
 	public void registerMember(MemberBean bean) throws DAOException{
 		if(con==null){
 			getConnection();
@@ -96,8 +96,8 @@ public class RegisterMemberDAO {
 			//職員ではなく利用者の登録（is_staff=0）
 			//職員の登録はどうしますか？
 			String sql = "INSERT INTO member(member_name, member_address, member_tel, member_email, member_password, "
-			+ "member_birthday, joined_at, canceled_at, is_staff, created_at, updated_at, deleted_at) "
-			+ "VALUES(?,?,?,?,DEFAULT,TO_DATE(?,'YYYY-MM-DD'),DEFAULT, null, '0', DEFAULT, DEFAULT, DEFAULT) ";
+			+ "member_birthday, joined_at, canceled_at, is_staff, updated_at) "
+			+ "VALUES(?,?,?,?,DEFAULT,TO_DATE(?,'YYYY-MM-DD'),DEFAULT, null, '0', DEFAULT) ";
 			st = con.prepareStatement(sql);
 			st.setString(1,bean.getName());
 			st.setString(2,bean.getAddress());
@@ -107,6 +107,7 @@ public class RegisterMemberDAO {
 
 			st.executeUpdate();
 			st.close();
+
 		}catch(Exception e){
 			e.printStackTrace();
 			throw new DAOException("リソースの開放に失敗しました");
@@ -133,6 +134,7 @@ public class RegisterMemberDAO {
 			String sql = "SELECT * FROM member ORDER BY member_id DESC LIMIT 1";
 			st = con.prepareStatement(sql);
 			rs = st.executeQuery();
+
 			//SELECTで取った項目のnull判定。
 			if(rs.next()){//nullではない
 				int id = rs.getInt("member_id");
@@ -141,9 +143,11 @@ public class RegisterMemberDAO {
 				String tel = rs.getString("member_tel");
 				String email = rs.getString("member_email");
 				String birthday = rs.getString("member_birthday");
+
 				bean = new MemberBean(id,name,address,tel,email,birthday);
 			}
 			return bean;
+
 		}catch(Exception e){
 			e.printStackTrace();
 			throw new DAOException("リソースの開放に失敗しました");

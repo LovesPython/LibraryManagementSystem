@@ -26,13 +26,15 @@ img{
       <td>ID</td><td>名前</td><td>住所</td><td>電話番号</td><td>メールアドレス</td><td>生年月日</td>
     </tr>
     <tr>
-    <td>${member.id}</td><td>${member.name}</td><td>${member.address}</td><td>${member.tel}</td><td>${member.email}</td><td>${member.birthday}</td>
+    <td>${member1.id}</td><td>${member1.name}</td><td>${member1.address}</td><td>${member1.tel}</td><td>${member1.email}</td><td>${member1.birthday}</td>
     </tr>
   </table>
   <form action="/LibraryManagementSystem/MemberServlet?action=registerUpdate" method="post">
     <input type="submit" value="OK">
   </form><br>
-  <form action="/LibraryManagementSystem/memberManager/memberUpdate.jsp" method="post">
+  <!-- <form action="/LibraryManagementSystem/memberManager/memberUpdate.jsp" method="post">
+   -->
+  <form action="/LibraryManagementSystem/MemberServlet?action=forwardToUpdate" method="post">
     <input type="submit" value="戻る">
   </form>
 </body>

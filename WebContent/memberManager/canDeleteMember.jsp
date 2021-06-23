@@ -34,7 +34,7 @@ img{
 <form action="/LibraryManagementSystem/MemberServlet?action=deleteMember" method="post">
   <input type="submit" value="退会">
 </form>
-<form action="#" method="post">
+<form action="/LibraryManagementSystem/memberManager/searchMemberResult.jsp" method="post">
   <input type="submit" value="戻る">
 </form>
 </body>
