@@ -5,19 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="/LibraryManagementSystem/CSS/styleMenu.css">
 </head>
-<style media="screen">
-img{
-  background-repeat: no-repeat;
-  left: 0px;
-  height: 50px;
-  margin: 0px;
-  padding: 0px;
-}
-</style>
 <body>
   <header>
     <a href="menu.jsp"><img src="logo.png" alt="ヘッダ背景"></a>
+    ささき図書館
   </header>
 <h1>メニュー</h1>
 <h2>会員管理</h2>

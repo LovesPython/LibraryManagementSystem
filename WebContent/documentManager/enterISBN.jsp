@@ -4,28 +4,25 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<style media="screen">
-img{
-  background-repeat: no-repeat;
-  left: 0px;
-  height: 50px;
-  margin: 0px;
-  padding: 0px;
-}
-</style>
-<body>
-  <header>
-    <a href="main.html"><img src="logo.png" alt="ヘッダ背景"></a>
-  </header>
+  <title>Insert title here</title>
+  <link rel="stylesheet" href="/LibraryManagementSystem/CSS/styleMenu.css">
+  </head>
+  <body>
+    <header>
+      <a href="/LibraryManagementSystem/menu.jsp"><img src="/LibraryManagementSystem/logo.png" alt="ヘッダ背景"></a>
+      ささき図書館
+    </header>
   <h1>資料のISBN番号を入力してください</h1>
-<form action="#" method="post">
-  ISBN番号： <input type="text" name="ISBN"><br>
-  <input type="submit" value="登録">
+<form action="/LibraryManagementSystem/DocumentServlet?action=registerSearchByISBN" method="post">
+  <div class="textBox">
+    <label class="ef">
+    ISBN番号： <input type="text" name="ISBN"><br>
+    </label>
+  </div>
+  <input type="submit" class="button buttonA" value="登録">
 </form>
-<form action="#" method="post">
-  <input type="submit" value="戻る">
+<form action="/LibraryManagementSystem/menu.jsp" method="post">
+  <input type="submit" class="button buttonB" value="戻る">
 </form>
 </body>
 </html>

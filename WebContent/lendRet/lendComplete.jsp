@@ -17,9 +17,9 @@ img{
 </style>
 <body>
   <header>
-    <a href="main.html"><img src="logo.png" alt="ヘッダ背景"></a>
+    <a href="/LibraryManagementSystem/menu.jsp"><img src="/LibraryManagementSystem/logo.png" alt="ヘッダ背景"></a>
   </header>
 <h1>貸出完了しました</h1>
-<a href="#">続けて貸出・返却をする</a>
+<a href="/LibraryManagementSystem/LendRetServlet?action=searchForLendRet">続けて貸出・返却をする</a>
 </body>
 </html>
