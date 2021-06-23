@@ -8,6 +8,8 @@ public class LendingLedgerBean implements Serializable{
 	private String lentDate;
 	private String returnDeadline;
 	private String returnedDate;
+	private String discardedDate;
+
 
 	public LendingLedgerBean() {
 
@@ -50,6 +52,12 @@ public class LendingLedgerBean implements Serializable{
 	}
 	public void setReturnedDate(String returnedDate) {
 		this.returnedDate = returnedDate;
+	}
+	public String getDiscardedDate() {
+		return discardedDate;
+	}
+	public void setDiscardedDate(String discardedDate) {
+		this.discardedDate = discardedDate;
 	}
 
 }
