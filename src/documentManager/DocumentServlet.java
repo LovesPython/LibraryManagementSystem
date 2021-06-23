@@ -529,9 +529,13 @@ public class DocumentServlet extends HttpServlet {
 					gotoPage(request,response,"/errInternal.jsp");
 					return;
 				}
-
+				String[] discardedDateList;
 				String[] addDateList = bean.getAddDate().split("-");
-				String[] discardedDateList = bean.getDiscardedDate().split("-");
+				try{
+				 	discardedDateList = bean.getDiscardedDate().split("-");
+				}catch(Exception e){
+					discardedDateList = null;
+				}
 
 				session.setAttribute("addDateList",addDateList);
 				session.setAttribute("discardedDateList",discardedDateList);

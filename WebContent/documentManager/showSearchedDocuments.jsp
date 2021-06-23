@@ -7,7 +7,7 @@
       <meta charset="UTF-8">
         <title>Insert title here</title>
         <link rel="stylesheet" href="/LibraryManagementSystem/CSS/styleMenu.css">
-        
+
         </head>
         <body>
           <header>
@@ -64,7 +64,7 @@
                 </c:forEach>
               </table>
                 <form action="/LibraryManagementSystem/documentManager/searchDocument.jsp" method="post">
-                  <input type="submit" value="戻る">
+                  <input type="submit" class="button" value="戻る">
                   </form>
                 </body>
               </html>

@@ -110,7 +110,7 @@ public class RegisterDocumentDAO {
     ResultSet rs = null;
 
     try{
-        String sql = "INSERT INTO document_ledger(isbn_no, added_at, discarded_at, note, created_at, updated_at, deleted_at) VALUES(?, DEFAULT, NULL, NULL, DEFAULT, DEFAULT, DEFAULT);";
+        String sql = "INSERT INTO document_ledger(isbn_no, added_at, discarded_at, note, updated_at) VALUES(?, DEFAULT, NULL, NULL, DEFAULT);";
         st = con.prepareStatement(sql);
         st.setString(1,bean.getIsbnNo());
         st.executeUpdate();
