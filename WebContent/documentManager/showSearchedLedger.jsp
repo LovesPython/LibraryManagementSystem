@@ -5,26 +5,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<style media="screen">
-img{
-  background-repeat: no-repeat;
-  left: 0px;
-  height: 50px;
-  margin: 0px;
-  padding: 0px;
-}
-</style>
-<body>
-  <header>
-    <a href="/LibraryManagementSystem/menu.jsp"><img src="/LibraryManagementSystem/logo.png" alt="ヘッダ背景"></a>
-  </header>
-  <h1>資料IDsample番号の検索結果</h1>
+  <title>Insert title here</title>
+  <link rel="stylesheet" href="/LibraryManagementSystem/CSS/styleMenu.css">
+  </head>
+  <body>
+    <header>
+      <a href="/LibraryManagementSystem/menu.jsp"><img src="/LibraryManagementSystem/logo.png" alt="ヘッダ背景"></a>
+      ささき図書館
+    </header>
+  <h1>検索結果</h1>
   <h2>資料台帳</h2>
   <table border="1">
     <tr>
-      <td>資料ID</td><td>ISBN番号</td><td>資料名</td><td>入荷年月日</td><td>廃棄年月日</td><td>備考</td>
+      <td>資料ID</td><td>ISBN番号</td><td>資料名</td><td>入荷年月日</td><td>廃棄年月日</td><td>備考</td><td>　</td><td>　</td>
     </tr>
     <tr>
       <td>${docLedger.id}</td>
@@ -35,19 +28,19 @@ img{
       <td>${docLedger.note}</td>
       <td>
         <form action="/LibraryManagementSystem/DocumentServlet?action=forwardToUpdateLedgerOnly" method="post">
-        <input type="submit" value="更新">
+        <input type="submit" class="button" value="更新">
         </form>
       </td>
       <td>
         <form action="/LibraryManagementSystem/DocumentServlet?action=deleteLedgerOnly" method="post">
-        <input type="submit" value="削除">
+        <input type="submit" class="button" value="削除">
         </form>
       </td>
     </tr>
   </table>
 <hr>
   <form action="/LibraryManagementSystem/documentManager/searchDocument.jsp" method="post">
-    <input type="submit" value="戻る">
+    <input type="submit" class="button" value="戻る">
   </form>
 </body>
 </html>

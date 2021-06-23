@@ -4,21 +4,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<style media="screen">
-img{
-  background-repeat: no-repeat;
-  left: 0px;
-  height: 50px;
-  margin: 0px;
-  padding: 0px;
-}
-</style>
-<body>
-  <header>
-    <a href="/LibraryManagementSystem/menu.jsp"><img src="/LibraryManagementSystem/logo.png" alt="ヘッダ背景"></a>
-  </header>
+  <title>Insert title here</title>
+  <link rel="stylesheet" href="/LibraryManagementSystem/CSS/styleMenu.css">
+  </head>
+  <body>
+    <header>
+      <a href="/LibraryManagementSystem/menu.jsp"><img src="/LibraryManagementSystem/logo.png" alt="ヘッダ背景"></a>
+      ささき図書館
+    </header>
 <h1>以下の内容で資料を登録します</h1>
 <table border="1">
   <tr>
@@ -29,10 +22,10 @@ img{
   </tr>
 </table>
 <form action="/LibraryManagementSystem/DocumentServlet?action=register" method="post">
-  <input type="submit" value="登録する">
+  <input type="submit" class="button" value="登録する">
 </form>
 <form action="/LibraryManagementSystem/documentManager/inputDocumentInfo.jsp" method="post">
-  <input type="submit" value="戻る">
+  <input type="submit" class="button" value="戻る">
 </form>
 </body>
 </html>
