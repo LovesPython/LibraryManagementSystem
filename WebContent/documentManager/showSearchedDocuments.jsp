@@ -14,7 +14,7 @@
             <a href="/LibraryManagementSystem/menu.jsp"><img src="/LibraryManagementSystem/logo.png" alt="ヘッダ背景"></a>
             ささき図書館
           </header>
-      <h1>ISBN番号sample番号の検索結果</h1>
+      <h1>検索結果</h1>
       <h2>資料目録</h2>
       <table border="1">
         <tr>

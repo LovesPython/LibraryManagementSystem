@@ -12,7 +12,7 @@
     <a href="/LibraryManagementSystem/menu.jsp"><img src="/LibraryManagementSystem/logo.png" alt="ヘッダ背景"></a>
     ささき図書館
   </header>
-  <h1>ISBN番号sample番号の資料を登録します</h1>
+  <h1>新規資料を登録します</h1>
   <form  action="/LibraryManagementSystem/DocumentServlet?action=confirmNew" method="post">
     <div class="textBox">
       <label class="ef">
