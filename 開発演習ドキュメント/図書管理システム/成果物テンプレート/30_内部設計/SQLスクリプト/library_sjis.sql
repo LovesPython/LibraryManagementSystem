@@ -38,6 +38,7 @@ INSERT INTO member(member_name, member_address, member_tel, member_email, member
 INSERT INTO member(member_name, member_address, member_tel, member_email, member_password, member_birthday, is_staff, joined_at, updated_at, canceled_at) VALUES('ã{ì‡ó«óY', 'ìåãûìsêVèhãÊà§èZí¨3-13', '0363683792', 'omiyauchi@dmohvkbc.ul', DEFAULT, '1978-02-03', '0', DEFAULT, DEFAULT, DEFAULT);
 INSERT INTO member(member_name, member_address, member_tel, member_email, member_password, member_birthday, is_staff, joined_at, updated_at, canceled_at) VALUES('âÕçËèréq', 'ìåãûìsêºëΩñÄåSûwå¥ë∫ñ{èh3-2', '0446542057', 'mtoshiko@ddypiugrkm.umzuu.lu', DEFAULT, '1968-06-27', '0', DEFAULT, DEFAULT, DEFAULT);
 INSERT INTO member(member_name, member_address, member_tel, member_email, member_password, member_birthday, is_staff, joined_at, updated_at, canceled_at) VALUES('ëùéRñæçO', 'ìåãûìsêÁë„ìcãÊê_ìcëΩí¨2-17-14', '0466138770', 'akihiro68445@ztrviehxl.hem', DEFAULT, '1984-09-12', '0', DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO member(member_name, member_address, member_tel, member_email, member_password, member_birthday, is_staff, joined_at, updated_at, canceled_at) VALUES('ññâióEéü', 'ìåãûìsñLìáãÊêºírë‹3-19-1', '0300163171', 'zonfinpjxppuftyuuji6303@xkdt.hz', DEFAULT, '1992-03-14', '0', DEFAULT, DEFAULT, DEFAULT);
 
 -----------------------------------------------------------
 -----------------------------------------------------------
@@ -64,6 +65,8 @@ INSERT INTO document_catalog VALUES('4906638015', '7Ç¬ÇÃèKäµ', 3, 'ÉXÉeÉBÅ[ÉuÉìÅ
 INSERT INTO document_catalog VALUES('4480425993', 'ÇÊÇ¢Ç±ÇÃåNéÂò_', 1, 'âÀê_ã±âÓ/íCñ§àÍê¢', 'í}ñÄèëñ[', '2009-05-11', DEFAULT, DEFAULT, DEFAULT);
 INSERT INTO document_catalog VALUES('4309029167', 'êÑÇµÅAîRÇ‰', 9, 'âFç≤å©ÇËÇÒ', 'âÕèoèëñ[êVé–', '2020-09-10', DEFAULT, DEFAULT, DEFAULT);
 INSERT INTO document_catalog VALUES('4309415083', 'JRè„ñÏâwåˆâÄå˚', 9, 'ñˆî¸ó¢', 'âÕèoï∂å…', '2017-02-07', DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO document_catalog VALUES('4101006059', 'êlä‘é∏äi', 9, 'ëæç…é°', 'êVí™é–', '2006-01-01', DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO document_catalog VALUES('4309631320', 'ÉNÉçÅ[ÉYÉAÉbÉvÂYëÂ', 3, 'çëíJóTéq/ìåãûÂYèpëÂäw', 'âÕèoèëñ[êVé–', '2021-05-21', DEFAULT, DEFAULT, DEFAULT);
 
 -----------------------------------------------------------
 -----------------------------------------------------------
@@ -101,6 +104,17 @@ INSERT INTO document_ledger(isbn_no, note, added_at, updated_at, discarded_at) V
 INSERT INTO document_ledger(isbn_no, note, added_at, updated_at, discarded_at) VALUES('4309415083', NULL, '2020-4-1', DEFAULT, DEFAULT);
 INSERT INTO document_ledger(isbn_no, note, added_at, updated_at, discarded_at) VALUES('4309415083', NULL, '2020-4-1', DEFAULT, DEFAULT);
 INSERT INTO document_ledger(isbn_no, note, added_at, updated_at, discarded_at) VALUES('4309415083', NULL, '2020-4-1', DEFAULT, DEFAULT);
+----êlä‘é∏äi(document_id:15~19)
+INSERT INTO document_ledger(isbn_no, note, added_at, updated_at, discarded_at) VALUES('4101006059', NULL, '2020-4-3', DEFAULT, DEFAULT);
+INSERT INTO document_ledger(isbn_no, note, added_at, updated_at, discarded_at) VALUES('4101006059', NULL, '2020-4-3', DEFAULT, DEFAULT);
+INSERT INTO document_ledger(isbn_no, note, added_at, updated_at, discarded_at) VALUES('4101006059', NULL, '2020-4-3', DEFAULT, DEFAULT);
+INSERT INTO document_ledger(isbn_no, note, added_at, updated_at, discarded_at) VALUES('4101006059', NULL, '2020-4-3', DEFAULT, DEFAULT);
+INSERT INTO document_ledger(isbn_no, note, added_at, updated_at, discarded_at) VALUES('4101006059', NULL, '2020-4-3', DEFAULT, DEFAULT);
+----ÉNÉçÅ[ÉYÉAÉbÉvÂYëÂ(document_id:20~23)
+INSERT INTO document_ledger(isbn_no, note, added_at, updated_at, discarded_at) VALUES('4309631320', NULL, '2021-05-25', DEFAULT, DEFAULT);
+INSERT INTO document_ledger(isbn_no, note, added_at, updated_at, discarded_at) VALUES('4309631320', NULL, '2021-05-25', DEFAULT, DEFAULT);
+INSERT INTO document_ledger(isbn_no, note, added_at, updated_at, discarded_at) VALUES('4309631320', NULL, '2021-05-25', DEFAULT, DEFAULT);
+INSERT INTO document_ledger(isbn_no, note, added_at, updated_at, discarded_at) VALUES('4309631320', NULL, '2021-05-25', DEFAULT, DEFAULT);
 
 
 -----------------------------------------------------------
@@ -131,6 +145,12 @@ INSERT INTO lending_ledger VALUES(4, '3', '2021-07-1', NULL, '2021-06-16', DEFAU
 INSERT INTO lending_ledger VALUES(4, '5', '2021-07-1', NULL, '2021-06-16', DEFAULT, DEFAULT);
 INSERT INTO lending_ledger VALUES(4, '9', '2021-07-1', NULL, '2021-06-16', DEFAULT, DEFAULT);
 INSERT INTO lending_ledger VALUES(5, '11', '2021-07-1', NULL, '2021-06-16', DEFAULT, DEFAULT);
+------âÔàıID=9Ç…5ç˚ë›èoíÜÅiëﬁâÔïsâ¬Åj
+INSERT INTO lending_ledger VALUES(9, '15', '2021-07-1', NULL, '2021-06-16', DEFAULT, DEFAULT);
+INSERT INTO lending_ledger VALUES(9, '16', '2021-07-1', NULL, '2021-06-16', DEFAULT, DEFAULT);
+INSERT INTO lending_ledger VALUES(9, '17', '2021-07-1', NULL, '2021-06-16', DEFAULT, DEFAULT);
+INSERT INTO lending_ledger VALUES(9, '18', '2021-07-1', NULL, '2021-06-16', DEFAULT, DEFAULT);
+INSERT INTO lending_ledger VALUES(9, '19', '2021-07-1', NULL, '2021-06-16', DEFAULT, DEFAULT);
 ----âÑëÿíÜ
 INSERT INTO lending_ledger VALUES(6, '12', '2021-06-16', NULL, '2021-06-1', DEFAULT, DEFAULT);
 INSERT INTO lending_ledger VALUES(6, '4', '2021-06-16', NULL, '2021-06-1', DEFAULT, DEFAULT);
