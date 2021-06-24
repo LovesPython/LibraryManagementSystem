@@ -5,21 +5,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>退会</title>
-</head>
-<style media="screen">
-img{
-  background-repeat: no-repeat;
-  left: 0px;
-  height: 50px;
-  margin: 0px;
-  padding: 0px;
-}
-</style>
-<body>
-  <header>
-  	<a href="/LibraryManagementSystem/menu.jsp"><img src="/LibraryManagementSystem/logo.png" alt="ヘッダ背景"></a>
-  </header>
+  <title>退会</title>
+  <link rel="stylesheet" href="/LibraryManagementSystem/CSS/styleMenu.css">
+  </head>
+  <body>
+    <header>
+      <a href="/LibraryManagementSystem/menu.jsp"><img src="/LibraryManagementSystem/logo.png" alt="ヘッダ背景"></a>
+      ささき図書館
+    </header>
   <h1>退会は可能です</h1>
   <table border="1">
     <tr>
@@ -32,10 +25,10 @@ img{
 <hr>
 貸出中の資料：なし
 <form action="/LibraryManagementSystem/MemberServlet?action=deleteMember" method="post">
-  <input type="submit" value="退会">
+  <input type="submit" class="button" value="退会">
 </form>
 <form action="/LibraryManagementSystem/memberManager/searchMemberResult.jsp" method="post">
-  <input type="submit" value="戻る">
+  <input type="submit" class="button" value="戻る">
 </form>
 </body>
 </html>

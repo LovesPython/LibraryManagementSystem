@@ -5,21 +5,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>会員情報更新</title>
-</head>
-<style media="screen">
-img{
-  background-repeat: no-repeat;
-  left: 0px;
-  height: 50px;
-  margin: 0px;
-  padding: 0px;
-}
-</style>
-<body>
-  <header>
-  	<a href="/LibraryManagementSystem/menu.jsp"><img src="/LibraryManagementSystem/logo.png" alt="ヘッダ背景"></a>
-  </header>
+  <title>Insert title here</title>
+  <link rel="stylesheet" href="/LibraryManagementSystem/CSS/styleMenu.css">
+  </head>
+  <body>
+    <header>
+      <a href="/LibraryManagementSystem/menu.jsp"><img src="/LibraryManagementSystem/logo.png" alt="ヘッダ背景"></a>
+      ささき図書館
+    </header>
   <h1>会員情報を更新</h1>
   <table border="1">
     <tr>
@@ -31,15 +24,19 @@ img{
   </table>
   <hr>
     <form  action="/LibraryManagementSystem/MemberServlet?action=confirmMemberUpdate" method="post">
-      名前：<input type="text" name="name" value=${member.name}><br>
-      住所：<input type="text" name="address" value=${member.address}><br>
-      電話番号：<input type="text" name="tel" value=${member.tel}><br>
+      <div class="textBox">
+        <label class="ef">
+      名前：　　　　　<input type="text" name="name" value=${member.name}><br>
+      住所：　　　　　<input type="text" name="address" value=${member.address}><br>
+      電話番号：　　　<input type="text" name="tel" value=${member.tel}><br>
       メールアドレス：<input type="text" name="email" value=${member.email}><br>
-      生年月日：<input type="text" name="year" value=${birthday[0]}>年<input type="text" name="month" value=${birthday[1]}>月<input type="text" name="date" value=${birthday[2]}>日<br>
-      <input type="submit" value="確認画面へ">
+      生年月日：　　　<input type="text" class="dateText" name="year" value=${birthday[0]}>年<input type="text" class="dateText" name="month" value=${birthday[1]}>月<input type="text" class="dateText" name="date" value=${birthday[2]}>日<br>
+    </label>
+  </div>
+      <input type="submit" class="button" value="確認画面へ">
     </form>
     <form action="/LibraryManagementSystem/memberManager/searchMemberResult.jsp" method="post">
-      <input type="submit" value="戻る">
+      <input type="submit" class="button" value="戻る">
     </form>
 </body>
 </html>

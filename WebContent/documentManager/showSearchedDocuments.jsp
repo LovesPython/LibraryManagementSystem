@@ -7,7 +7,7 @@
       <meta charset="UTF-8">
         <title>Insert title here</title>
         <link rel="stylesheet" href="/LibraryManagementSystem/CSS/styleMenu.css">
-
+        <script src="/LibraryManagementSystem/script/script.js" defer></script>
         </head>
         <body>
           <header>
@@ -55,9 +55,9 @@
                     </td>
                   </form>
                   <td>
-                    <form action="/LibraryManagementSystem/DocumentServlet?action=deleteLedger" method="post">
+                    <form id="form" action="/LibraryManagementSystem/DocumentServlet?action=deleteLedger" method="post">
                       <input type="hidden" name="targetLedgerId" value="${docLedger.id}">
-                      <input type="submit" class="button" value="削除">
+                      <input type="submit" class="button delete" value="削除" onClick="return Check()">
                       </form>
                     </td>
                   </tr>

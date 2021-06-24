@@ -43,14 +43,21 @@ public class MemberServlet extends HttpServlet {
 				//生年月日を結合して1つの変数にする（DBのため）
 				String birthday = year + "-" + month + "-" + date;
 
-				//電話番号と誕生日が数字かどうかチェック
+				//電話番号と誕生日が数字かどうかチェック(intかどうか、正かどうか)
 				Boolean isNumericTel = tel.matches("[+]?\\d+");
 				Boolean isNumericYear = year.matches("[+]?\\d+");
 				Boolean isNumericMonth = month.matches("[+]?\\d+");
 				Boolean isNumericDate = date.matches("[+]?\\d+");
 
+
 				//不正入力の監視（長すぎるif文）
 				if(name.length()==0 || address.length()==0 || tel.length()==0 || tel.length() >= 15 || !isNumericTel || email.length()==0 || year.length()==0 || !isNumericYear || month.length()==0 || !isNumericMonth || date.length()==0 || !isNumericDate) {
+					request.setAttribute("message","正しく入力してください");
+					gotoPage(request,response,"/memberManager/errInternal.jsp");
+					return;
+				}
+
+				if(Integer.parseInt(year) < 1 || Integer.parseInt(month) < 1 || 12 < Integer.parseInt(month) || Integer.parseInt(date) < 1 || 31 < Integer.parseInt(date)){
 					request.setAttribute("message","正しく入力してください");
 					gotoPage(request,response,"/memberManager/errInternal.jsp");
 					return;
@@ -229,6 +236,12 @@ public class MemberServlet extends HttpServlet {
 					return;
 				}
 
+				if(Integer.parseInt(year) < 1 || Integer.parseInt(month) < 1 || 12 < Integer.parseInt(month) || Integer.parseInt(date) < 1 || 31 < Integer.parseInt(date)){
+					request.setAttribute("message","正しく入力してください");
+					gotoPage(request,response,"/memberManager/errInternal.jsp");
+					return;
+				}
+				
 				//idはそのまま
 				beanA.setId(bean.getId());
 

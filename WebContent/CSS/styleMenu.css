@@ -108,6 +108,57 @@ table tr:nth-child(1){
 .opTx{
   overflow: hidden;
 }
+
+.yokoBox{
+  overflow: hidden;
+}
+
+.yoko{
+  float: left;
+}
+
+h2 {
+  position: relative;
+  padding: 0.5em;
+  background: #a6d3c8;
+  color: white;
+  width: 70%;
+}
+
+h2::before {
+  position: absolute;
+  content: '';
+  top: 100%;
+  left: 0;
+  border: none;
+  border-bottom: solid 15px transparent;
+  border-right: solid 20px rgb(149, 158, 155);
+}
+
+h1 {
+  position: relative;
+  padding-left: 25px;
+}
+
+h1:before {
+  position: absolute;
+  content: '';
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border: none;
+  border-left: solid 15px transparent;
+  border-bottom: solid 15px rgb(119, 195, 223);
+}
+h1:after {
+  position: absolute;
+  content: '';
+  bottom: -3px;
+  left: 10px;
+  width: 100%;
+  border-bottom: solid 3px rgb(119, 195, 223);
+}
 /* .buttonA{
   float:left;
 }
