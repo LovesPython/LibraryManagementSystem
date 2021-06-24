@@ -21,5 +21,8 @@
 <h2>貸出・返却</h2>
 <a href="./lendRet/searchMemberLendRet.jsp">貸出・返却</a><br>
 <a href="/LibraryManagementSystem/LendRetServlet?action=overdue">延滞者一覧</a>
+<div class="endroll">
+  <a href="/LibraryManagementSystem/endroll/endroll.html">thanks</a>
+</div>
 </body>
 </html>

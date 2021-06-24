@@ -159,6 +159,12 @@ h1:after {
   width: 100%;
   border-bottom: solid 3px rgb(119, 195, 223);
 }
+
+.endroll{
+  bottom: 0px;
+  right: 0px;
+  font-size: 10px;
+}
 /* .buttonA{
   float:left;
 }

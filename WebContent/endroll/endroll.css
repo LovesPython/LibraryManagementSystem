@@ -1,0 +1,26 @@
+body {
+	background-color:black;
+	font-family: 'Kosugi Maru', sans-serif;
+}
+#movie{
+	width : 100%;
+	height : 800px;
+	overflow:hidden;
+	position:relative;
+  }
+.roll-text{
+	width: 100%;
+	text-align: center;
+	white-space : pre;
+	color:white;
+	position:absolute;
+	animation: anim-scroll-up 50s linear forwards;
+  }
+  @keyframes anim-scroll-up{
+	from{
+	  top:auto;
+	}
+	to{
+	  bottom:100%;
+	}
+  }
