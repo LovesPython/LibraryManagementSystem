@@ -14,7 +14,7 @@ body {
 	white-space : pre;
 	color:white;
 	position:absolute;
-	animation: anim-scroll-up 50s linear forwards;
+	animation: anim-scroll-up 10s linear forwards;
   }
   @keyframes anim-scroll-up{
 	from{
