@@ -164,6 +164,7 @@ h1:after {
   bottom: 0px;
   right: 0px;
   font-size: 10px;
+  position:fixed;
 }
 /* .buttonA{
   float:left;
