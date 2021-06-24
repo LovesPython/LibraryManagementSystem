@@ -5,21 +5,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>会員検索結果</title>
-</head>
-<style media="screen">
-img{
-  background-repeat: no-repeat;
-  left: 0px;
-  height: 50px;
-  margin: 0px;
-  padding: 0px;
-}
-</style>
-<body>
-  <header>
-  	<a href="/LibraryManagementSystem/menu.jsp"><img src="/LibraryManagementSystem/logo.png" alt="ヘッダ背景"></a>
-  </header>
+  <title>会員検索結果</title>
+  <link rel="stylesheet" href="/LibraryManagementSystem/CSS/styleMenu.css">
+  </head>
+  <body>
+    <header>
+      <a href="/LibraryManagementSystem/menu.jsp"><img src="/LibraryManagementSystem/logo.png" alt="ヘッダ背景"></a>
+      ささき図書館
+    </header>
 <h1>検索結果</h1>
 <table border="1">
   <tr>
@@ -29,14 +22,20 @@ img{
     <td>${member.id}</td><td>${member.name}</td><td>${member.address}</td><td>${member.tel}</td><td>${member.email}</td><td>${member.birthday}</td><td>${member.joinDate}</td><td>${member.withdrawalDate}</td>
   </tr>
 </table>
-<form  action="/LibraryManagementSystem/MemberServlet?action=forwardToUpdate" method="post">
-  <input type="submit" value="会員情報変更">
-</form>
-<form  action="/LibraryManagementSystem/MemberServlet?action=verdictDeletableMember" method="post">
-  <input type="submit" value="会員退会">
-</form>
+<div class="yokoBox">
+  <div class="yoko">
+    <form  action="/LibraryManagementSystem/MemberServlet?action=forwardToUpdate" method="post">
+      <input type="submit" class="button" value="会員情報変更">
+    </form>
+  </div>
+  <div class="yoko">
+    <form  action="/LibraryManagementSystem/MemberServlet?action=verdictDeletableMember" method="post">
+      <input type="submit" class="button" value="会員退会">
+    </form>
+  </div>
+</div>
 <form action="/LibraryManagementSystem/memberManager/searchMemberMember.jsp" method="post">
-  <input type="submit" value="戻る">
+  <input type="submit" class="button" value="戻る">
 </form>
 </body>
 </html>

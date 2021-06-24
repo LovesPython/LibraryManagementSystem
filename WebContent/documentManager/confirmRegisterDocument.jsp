@@ -7,7 +7,6 @@
 <meta charset="UTF-8">
   <title>Insert title here</title>
   <link rel="stylesheet" href="/LibraryManagementSystem/CSS/styleMenu.css">
-    <script src="/LibraryManagementSystem/script/script.js" defer></script>
   </head>
   <body>
     <header>

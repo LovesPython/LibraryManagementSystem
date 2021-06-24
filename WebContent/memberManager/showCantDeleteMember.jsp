@@ -5,21 +5,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>退会不可通知</title>
-</head>
-<style media="screen">
-img{
-  background-repeat: no-repeat;
-  left: 0px;
-  height: 50px;
-  margin: 0px;
-  padding: 0px;
-}
-</style>
-<body>
-  <header>
-  	<a href="/LibraryManagementSystem/menu.jsp"><img src="/LibraryManagementSystem/logo.png" alt="ヘッダ背景"></a>
-  </header>
+  <title>Insert title here</title>
+  <link rel="stylesheet" href="/LibraryManagementSystem/CSS/styleMenu.css">
+  </head>
+  <body>
+    <header>
+      <a href="/LibraryManagementSystem/menu.jsp"><img src="/LibraryManagementSystem/logo.png" alt="ヘッダ背景"></a>
+      ささき図書館
+    </header>
 <h1>退会できません</h1>
 <a href="/LibraryManagementSystem/memberManager/searchMemberMember.jsp">会員検索画面に戻る</a>
 </body>

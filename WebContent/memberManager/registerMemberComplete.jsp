@@ -5,21 +5,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>新規会員登録完了</title>
-</head>
-<style media="screen">
-img{
-  background-repeat: no-repeat;
-  left: 0px;
-  height: 50px;
-  margin: 0px;
-  padding: 0px;
-}
-</style>
-<body>
-  <header>
-  	<a href="/LibraryManagementSystem/menu.jsp"><img src="/LibraryManagementSystem/logo.png" alt="ヘッダ背景"></a>
-  </header>
+  <title>Insert title here</title>
+  <link rel="stylesheet" href="/LibraryManagementSystem/CSS/styleMenu.css">
+  </head>
+  <body>
+    <header>
+      <a href="/LibraryManagementSystem/menu.jsp"><img src="/LibraryManagementSystem/logo.png" alt="ヘッダ背景"></a>
+      ささき図書館
+    </header>
 <h1>
 登録が完了しました。登録内容は以下です。
 </h1>

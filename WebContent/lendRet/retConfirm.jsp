@@ -6,21 +6,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<style media="screen">
-img{
-  background-repeat: no-repeat;
-  left: 0px;
-  height: 50px;
-  margin: 0px;
-  padding: 0px;
-}
-</style>
-<body>
-  <header>
-    <a href="/LibraryManagementSystem/menu.jsp"><img src="/LibraryManagementSystem/logo.png" alt="ヘッダ背景"></a>
-  </header>
+  <title>Insert title here</title>
+  <link rel="stylesheet" href="/LibraryManagementSystem/CSS/styleMenu.css">
+  </head>
+  <body>
+    <header>
+      <a href="/LibraryManagementSystem/menu.jsp"><img src="/LibraryManagementSystem/logo.png" alt="ヘッダ背景"></a>
+      ささき図書館
+    </header>
   <h1>この資料を返却しますか？</h1>
   <table border="1">
   	<tr>
@@ -33,10 +26,10 @@ img{
     </c:forEach>
   </table>
   <form action="/LibraryManagementSystem/LendRetServlet?action=return" method="post">
-    <input type="submit" value="OK"> <br>
+    <input type="submit" class="button" value="OK"> <br>
   </form>
    <form action="/LibraryManagementSystem/LendRetServlet?action=searchForLendRet" method="post">
-    <input type="submit" value="戻る"> <br>
+    <input type="submit" class="button" value="戻る"> <br>
   </form>
 </body>
 </html>

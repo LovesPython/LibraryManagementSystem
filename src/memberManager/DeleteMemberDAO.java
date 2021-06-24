@@ -20,7 +20,8 @@ public class DeleteMemberDAO {
 		ResultSet rs = null;
 		try{
 			//該当レコードを一行だけ取ってくる
-			String sql = "SELECT * FROM lending_ledger WHERE member_id=? LIMIT 1";
+			//String sql = "SELECT * FROM lending_ledger WHERE member_id=? LIMIT 1";
+			String sql = "SELECT * FROM lending_ledger WHERE member_id=? AND returned_at is NULL";
 			st = con.prepareStatement(sql);
 			st.setInt(1,memberId);
 			rs = st.executeQuery();
@@ -29,8 +30,9 @@ public class DeleteMemberDAO {
 			//SELECTで取った項目のnull判定
 			if(rs.next()){//nullではない＝貸出台帳に会員IDがある
 				//返却済みなら退会可
-				String isReturned = rs.getString("returned_at");
-				if(isReturned == null) resultIsDeletable = false;
+				resultIsDeletable = false;
+				// String isReturned = rs.getString("returned_at");
+				// if(isReturned == null) resultIsDeletable = false;
 
 				System.out.println("SELECTでヒットしました");
 				return resultIsDeletable;
