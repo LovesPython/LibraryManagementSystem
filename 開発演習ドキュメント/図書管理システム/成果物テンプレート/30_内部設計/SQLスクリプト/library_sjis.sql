@@ -66,6 +66,7 @@ INSERT INTO document_catalog VALUES('4480425993', 'よいこの君主論', 1, '架神恭介
 INSERT INTO document_catalog VALUES('4309029167', '推し、燃ゆ', 9, '宇佐見りん', '河出書房新社', '2020-09-10', DEFAULT, DEFAULT, DEFAULT);
 INSERT INTO document_catalog VALUES('4309415083', 'JR上野駅公園口', 9, '柳美里', '河出文庫', '2017-02-07', DEFAULT, DEFAULT, DEFAULT);
 INSERT INTO document_catalog VALUES('4101006059', '人間失格', 9, '太宰治', '新潮社', '2006-01-01', DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO document_catalog VALUES('4309631320', 'クローズアップ藝大', 3, '国谷裕子/東京藝術大学', '河出書房新社', '2021-05-21', DEFAULT, DEFAULT, DEFAULT);
 
 -----------------------------------------------------------
 -----------------------------------------------------------
@@ -109,6 +110,11 @@ INSERT INTO document_ledger(isbn_no, note, added_at, updated_at, discarded_at) V
 INSERT INTO document_ledger(isbn_no, note, added_at, updated_at, discarded_at) VALUES('4101006059', NULL, '2020-4-3', DEFAULT, DEFAULT);
 INSERT INTO document_ledger(isbn_no, note, added_at, updated_at, discarded_at) VALUES('4101006059', NULL, '2020-4-3', DEFAULT, DEFAULT);
 INSERT INTO document_ledger(isbn_no, note, added_at, updated_at, discarded_at) VALUES('4101006059', NULL, '2020-4-3', DEFAULT, DEFAULT);
+----クローズアップ藝大(document_id:20~23)
+INSERT INTO document_ledger(isbn_no, note, added_at, updated_at, discarded_at) VALUES('4309631320', NULL, '2021-05-25', DEFAULT, DEFAULT);
+INSERT INTO document_ledger(isbn_no, note, added_at, updated_at, discarded_at) VALUES('4309631320', NULL, '2021-05-25', DEFAULT, DEFAULT);
+INSERT INTO document_ledger(isbn_no, note, added_at, updated_at, discarded_at) VALUES('4309631320', NULL, '2021-05-25', DEFAULT, DEFAULT);
+INSERT INTO document_ledger(isbn_no, note, added_at, updated_at, discarded_at) VALUES('4309631320', NULL, '2021-05-25', DEFAULT, DEFAULT);
 
 
 -----------------------------------------------------------
