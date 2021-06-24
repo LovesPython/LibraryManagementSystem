@@ -19,6 +19,9 @@ public class LendRetDocumentDAO {
 
 	/* 会員IDから貸出履歴を出す*/
 	public List<LendingLedgerBean> findLendingLedgerByMemberId(int memberId) throws DAOException{
+		if(con==null){
+      getConnection();
+    }
 		PreparedStatement st=null;
 		ResultSet rs=null;
 		try {
@@ -77,8 +80,9 @@ public class LendRetDocumentDAO {
 
   /*貸出状況の表示*/
   public LendingLedgerBean addDeadline(int documentId,int memberId) throws DAOException{
-    if (con==null)
-		getConnection();
+    if (con==null){
+			getConnection();
+		}
     PreparedStatement st=null;
   	ResultSet rs=null;
 
@@ -256,8 +260,9 @@ public class LendRetDocumentDAO {
 
   /*返却処理*/
   public void deleteLendingLedger(LendingLedgerBean bean)throws DAOException{
-    if (con==null)
+    if (con==null){
 			getConnection();
+		}
 	  PreparedStatement st=null;
     try{
       /*今日の日付を取得する*/
@@ -285,6 +290,43 @@ public class LendRetDocumentDAO {
   		}
     }
   }
+
+	public boolean isDeletedMember(int memberId) throws DAOException{
+		if(con==null){
+			getConnection();
+		}
+
+		PreparedStatement st = null;
+		ResultSet rs = null;
+
+		try {
+			String sql="SELECT canceled_at FROM member WHERE member_id=?";
+			st = con.prepareStatement(sql);
+			st.setInt(1,memberId);
+			rs = st.executeQuery();
+			if(rs.next()){//nullではない
+				String canceledAt = rs.getString("canceled_at");
+				if(canceledAt==null){
+					return true;
+				}else{
+					return false;
+				}
+			}else{
+				return false;
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+			throw new DAOException("レコードの取得に失敗しました。");
+		}finally {
+			try {
+				if(rs !=null) rs.close();
+				if(st != null) st.close();
+	  		close();
+			}catch(Exception e){
+				throw new DAOException("リソースの開放に失敗しました。");
+			}
+		}
+	}
   	/*カレンダーを年月日の文字列で取得*/
 	private String  getCalString(Calendar cal){
 

@@ -53,7 +53,11 @@ public class LendRetServlet extends HttpServlet {
 				List<LendingLedgerBean> list=dao.findLendingLedgerByMemberId(memberId);
 				if(list==null) {
 					throw new IsNotExistMember("会員登録してください。");
-				}else {
+				}else if(dao.isDeletedMember(memberId)==false){
+					request.setAttribute("message","すでに退会しています");
+					gotoPage(request,response,"/errInternal.jsp");
+					return;
+				}else{
 					session.setAttribute("member", list);
 					request.setAttribute("members",list);
 					gotoPage(request,response,"/lendRet/lendStatusLendRet.jsp");
@@ -68,13 +72,18 @@ public class LendRetServlet extends HttpServlet {
 				int lendDocumentId=Integer.parseInt(document);
 				LendRetDocumentDAO dao=new LendRetDocumentDAO();
 				LendingLedgerBean bean=dao.addDeadline(lendDocumentId,memberId);
+				List<LendingLedgerBean> lists=dao.findLendingLedgerByMemberId(memberId);
 				if(bean==null) {
 					throw new IsNotExistDocument("登録されていない資料です。");
 				}else if(bean.getReturnedDate()=="lendingDocument") {
 					throw new DuplicatedDocumentException("既に貸出中の資料です。");
 				}else if(bean.getDiscardedDate()!=null) {
 					throw new IsDiscardedDocument("既に廃棄済みの資料です。");
-				}else {
+				}else if(lists.size() >= 5){
+						request.setAttribute("message","5冊より多くは貸し出せません");
+						gotoPage(request,response,"/errInternal.jsp");
+						return;
+				}else{
 					session.setAttribute("lending",bean);
 					session.setAttribute("documentId",lendDocumentId);
 
