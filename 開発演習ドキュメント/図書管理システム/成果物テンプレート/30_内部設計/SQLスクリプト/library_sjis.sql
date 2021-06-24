@@ -83,12 +83,25 @@ CREATE TABLE document_ledger (
 ALTER TABLE document_ledger OWNER TO libraryuser;
 
 -- 資料台帳テーブルのサンプルデータ
-INSERT INTO document_ledger(isbn_no, note, added_at, updated_at, discarded_at) VALUES('1234567890', '劣化のため廃棄', '1995-4-8', DEFAULT, '2003-8-5');
-INSERT INTO document_ledger(isbn_no, note, added_at, updated_at, discarded_at) VALUES('4906638015', NULL, '2021-1-7', DEFAULT, DEFAULT);
-INSERT INTO document_ledger(isbn_no, note, added_at, updated_at, discarded_at) VALUES('4906638015', NULL, '2021-1-7', DEFAULT, DEFAULT);
+----7つの習慣(document_id:1~3)
+INSERT INTO document_ledger(isbn_no, note, added_at, updated_at, discarded_at) VALUES('4906638015', '劣化のため廃棄', '1999-4-8', DEFAULT, '2003-8-5');
+INSERT INTO document_ledger(isbn_no, note, added_at, updated_at, discarded_at) VALUES('4906638015', NULL, '2004-1-7', DEFAULT, DEFAULT);
+INSERT INTO document_ledger(isbn_no, note, added_at, updated_at, discarded_at) VALUES('4906638015', NULL, '2004-1-7', DEFAULT, DEFAULT);
+----よいこの君主論(document_id:4~8)
 INSERT INTO document_ledger(isbn_no, note, added_at, updated_at, discarded_at) VALUES('4480425993', NULL, '2015-10-18', DEFAULT, DEFAULT);
 INSERT INTO document_ledger(isbn_no, note, added_at, updated_at, discarded_at) VALUES('4480425993', NULL, '2015-10-18', DEFAULT, DEFAULT);
 INSERT INTO document_ledger(isbn_no, note, added_at, updated_at, discarded_at) VALUES('4480425993', NULL, '2015-10-18', DEFAULT, DEFAULT);
+INSERT INTO document_ledger(isbn_no, note, added_at, updated_at, discarded_at) VALUES('4480425993', NULL, '2015-10-18', DEFAULT, DEFAULT);
+INSERT INTO document_ledger(isbn_no, note, added_at, updated_at, discarded_at) VALUES('4480425993', NULL, '2015-10-18', DEFAULT, DEFAULT);
+----推し、燃ゆ(document_id:9~11)
+INSERT INTO document_ledger(isbn_no, note, added_at, updated_at, discarded_at) VALUES('4309029167', NULL, '2021-3-10', DEFAULT, DEFAULT);
+INSERT INTO document_ledger(isbn_no, note, added_at, updated_at, discarded_at) VALUES('4309029167', NULL, '2021-3-10', DEFAULT, DEFAULT);
+INSERT INTO document_ledger(isbn_no, note, added_at, updated_at, discarded_at) VALUES('4309029167', NULL, '2021-3-10', DEFAULT, DEFAULT);
+----JR上野駅公園口(document_id:12~14)
+INSERT INTO document_ledger(isbn_no, note, added_at, updated_at, discarded_at) VALUES('4309415083', NULL, '2020-4-1', DEFAULT, DEFAULT);
+INSERT INTO document_ledger(isbn_no, note, added_at, updated_at, discarded_at) VALUES('4309415083', NULL, '2020-4-1', DEFAULT, DEFAULT);
+INSERT INTO document_ledger(isbn_no, note, added_at, updated_at, discarded_at) VALUES('4309415083', NULL, '2020-4-1', DEFAULT, DEFAULT);
+
 
 -----------------------------------------------------------
 -----------------------------------------------------------
@@ -110,14 +123,18 @@ ALTER TABLE lending_ledger OWNER TO libraryuser;
 
 -- 貸出台帳テーブルのサンプルデータ
 ----返却済
-INSERT INTO lending_ledger VALUES(2, '12345', '2021-06-30', NULL, '2021-06-15', DEFAULT, '2021-06-22');
-INSERT INTO lending_ledger VALUES(2, '67890', '2021-06-30', NULL, '2021-06-15', DEFAULT, '2021-06-22');
-INSERT INTO lending_ledger VALUES(2, '11223', '2021-06-30', NULL, '2021-06-15', DEFAULT, '2021-06-22');
+INSERT INTO lending_ledger VALUES(2, '1', '2021-06-30', NULL, '2021-06-15', DEFAULT, '2021-06-22');
+INSERT INTO lending_ledger VALUES(2, '10', '2021-06-30', NULL, '2021-06-15', DEFAULT, '2021-06-22');
+INSERT INTO lending_ledger VALUES(3, '2', '2021-06-30', NULL, '2021-06-15', DEFAULT, '2021-06-22');
 ----貸出中
-INSERT INTO lending_ledger VALUES(3, '11445', '2021-07-20', NULL, '2021-07-05', DEFAULT, DEFAULT);
-INSERT INTO lending_ledger VALUES(4, '123', '2021-07-20', NULL, '2021-07-05', DEFAULT, DEFAULT);
-INSERT INTO lending_ledger VALUES(4, '45', '2021-07-20', NULL, '2021-07-05', DEFAULT, DEFAULT);
-INSERT INTO lending_ledger VALUES(5, '678', '2021-07-20', NULL, '2021-07-05', DEFAULT, DEFAULT);
+INSERT INTO lending_ledger VALUES(4, '3', '2021-07-1', NULL, '2021-06-16', DEFAULT, DEFAULT);
+INSERT INTO lending_ledger VALUES(4, '5', '2021-07-1', NULL, '2021-06-16', DEFAULT, DEFAULT);
+INSERT INTO lending_ledger VALUES(4, '9', '2021-07-1', NULL, '2021-06-16', DEFAULT, DEFAULT);
+INSERT INTO lending_ledger VALUES(5, '11', '2021-07-1', NULL, '2021-06-16', DEFAULT, DEFAULT);
+----延滞中
+INSERT INTO lending_ledger VALUES(6, '12', '2021-06-16', NULL, '2021-06-1', DEFAULT, DEFAULT);
+INSERT INTO lending_ledger VALUES(6, '4', '2021-06-16', NULL, '2021-06-1', DEFAULT, DEFAULT);
+INSERT INTO lending_ledger VALUES(7, '14', '2021-06-17', NULL, '2021-06-2', DEFAULT, DEFAULT);
 
 -----------------------------------------------------------
 -----------------------------------------------------------
