@@ -12,6 +12,7 @@
     <a href="menu.jsp"><img src="logo.png" alt="ヘッダ背景"></a>
     ささき図書館
   </header>
+  <div class="left">
 <h2>会員管理</h2>
 <a href="./memberManager/registerNewMember.jsp">新規会員登録</a><br>
 <a href="./memberManager/searchMemberMember.jsp">検索（更新・削除）</a>
@@ -23,6 +24,7 @@
 <a href="/LibraryManagementSystem/LendRetServlet?action=overdue">延滞者一覧</a>
 <div class="endroll">
   <a href="/LibraryManagementSystem/endroll/endroll.html">thanks</a>
+</div>
 </div>
 </body>
 </html>
